@@ -73,11 +73,13 @@
      </li>
      <li class="login_name"><%=@user_name%></li>
    </ul>
+    <% if !@media_details.nil? %>
    <ul class="posted_description">
      <li>Posted: <%=(@media_details.created_at).strftime("%m/%d/%Y")%></li>
      <li>Views: <%=@media_details.view_count%></li>
      <li>Comments: <%=total_comment_count(@media_details.id)%></li>
    </ul>
+   <%end%>
    <div class="small_form_holder">
     <h3 class="tweet_right_row_small">
        <label class="share_label_name">Share</label>
