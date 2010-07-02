@@ -1,3 +1,6 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+<%@media_details.inspect%>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <div class="tweet_content_holder_detail">
     <div class="tweet_left_column">
       <% if @media_error.nil? %>
@@ -79,7 +82,7 @@
      <li>Views: <%=@media_details.view_count%></li>
      <li>Comments: <%=total_comment_count(@media_details.id)%></li>
    </ul>
-   <%end%>
+   <% end %>
    <div class="small_form_holder">
     <h3 class="tweet_right_row_small">
        <label class="share_label_name">Share</label>
