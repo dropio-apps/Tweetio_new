@@ -19,10 +19,11 @@ test:
   oauth_callback: "http://localhost:3000/oauth_callback"
 production:
   strategy: oauth
-  oauth_consumer_key: prodkey
-  oauth_consumer_secret: prodsecret 
-  authorize_path: "/oauth/authenticate"
+  oauth_consumer_key: 0KrcQWn63Tk6Io3owCGg
+  oauth_consumer_secret: pEBTMnHZbFhevNXSiVVXOycYB6oLQxXYcjWywyLLOg
   base_url: "https://twitter.com"
+  authorize_path: "/oauth/authenticate"
   api_timeout: 10
   remember_for: 14 # days
+  oauth_callback: "http://ec2-184-73-168-37.compute-1.amazonaws.com/oauth_callback"
 
