@@ -14,7 +14,7 @@
         </h1>
         <h1 class="box_row1">
          <label class="label_name">Note</label>
-         <p class="text_fld"><%= f.text_area :description, :rows => '1', :cols => '27' %></p>
+         <p class="text_fld"><%= f.text_area :description, :rows => '1', :cols => '23' %></p>
          <p class="buttons1">
            <%= f.hidden_field :user_id, :value => current_user.id %>
            <%= image_submit_tag "/images/upload_btn.gif" %>
@@ -39,7 +39,7 @@
                  <% if !media.description.nil? %>
                    <%=media.description[0..30]%>
                  <%end%>
-                <% if !media.description.nil? %><%=media.description[0..30]%><%end%></p>
+               </p>
                <p class="tweet_bld_txt_small"><strong>Posted:</strong> <%=media.created_at.strftime("%m/%d/%Y")%> | <strong>Views:</strong> <%=media.view_count%> | <strong>Comments:</strong> <%=total_comment_count(media.id)%></p>
             </h2>
           </div>
