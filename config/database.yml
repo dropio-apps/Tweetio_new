@@ -18,7 +18,7 @@ test:
 
 production:
   adapter: mysql
-  database: tweetio_production
+  database: Tweetio_new_production
   username: deploy
   password: qKaglNVU4r
   host: ec2-184-73-168-37.compute-1.amazonaws.com
