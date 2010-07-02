@@ -17,7 +17,8 @@ test:
   timeout: 5000
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
-  pool: 5
-  timeout: 5000
+  adapter: mysql
+  database: tweetio_production
+  username: deploy
+  password: qKaglNVU4r
+  host: ec2-184-73-168-37.compute-1.amazonaws.com
