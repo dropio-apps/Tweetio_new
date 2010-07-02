@@ -1,0 +1,27 @@
+<% if !logged_in? %>
+  <div class="tweet_header_container">
+    <p class="tweet_logo">
+      <%= link_to(image_tag("/images/tweet_logo.gif",:border=>"0"),'/home/index') %>
+    </p>
+    <p class="tweet_signin_btn">
+      <%=link_to image_tag("/images/tweet_signin_btn.gif", :alt=>"Signin"), '/login' %>
+    </p>
+    <div class="clr"></div>
+  </div>
+  <div class="tweet_headbar_bg"></div>
+  <div class="clr"></div>
+<% else %>
+  <div class="tweet_header_container">
+    <p class="tweet_logo">
+      <%= link_to(image_tag("/images/tweet_logo.gif",:border=>"0"),'/home/index') %>      
+    </p>
+    <h1 class="tweet_login_holder">
+       <ul class="tweet_person_signedin">
+          <li class="login_name"><%= link_to current_user.name,medias_user_path(current_user.login)%><span><%=link_to 'Logout','/logout' %></span></li>
+          <li class="login_image"><%=image_tag @user_image%></li>
+       </ul>
+    </h1>
+   </div>
+  <div class="tweet_headbar_bg"></div>
+  <div class="clr"></div>
+<% end %>

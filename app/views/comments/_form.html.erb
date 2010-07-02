@@ -1,0 +1,14 @@
+<% form_for :comment,@comment,:url=>'/comments/insert' do |f| %>
+  <div class="comments_txt_area">   
+       <p class="picturemsg_dwn">Comments</p>
+        <% if !flash[:notice].blank? %>
+          <p class="comment_alert"><%=flash[:notice]%></p>
+        <% end %>
+       <h3 class="comment_area"><%= f.text_area :comments, :class=>'commenttxtarea', :rows => '1', :cols => '40' %></h3>
+       <p class="post_btn">
+         <%= f.hidden_field :upload_file_id, :value => upload_file.id %>
+         <%= f.hidden_field :users_id, :value => current_user.id %>
+         <%= image_submit_tag "/images/post_btn.gif" %>
+      </p>
+  </div>
+<% end %>

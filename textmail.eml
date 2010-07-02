@@ -1,0 +1,45 @@
+MIME-Version: 1.0
+Received: by 10.231.113.2 with HTTP; Fri, 30 Apr 2010 01:55:47 -0700 (PDT)
+X-Originating-IP: [220.227.31.66]
+Date: Fri, 30 Apr 2010 14:25:47 +0530
+Delivered-To: begin.samuel@photoninfotech.net
+Message-ID: <s2mc26397ed1004300155q43c692a6h862e9030751cb23f@mail.gmail.com>
+Subject: Testing Tmail and Drop code
+From: Begin J Samuel <begin.samuel@photoninfotech.net>
+To: "Begin.samuel" <Begin.samuel@photoninfotech.com>
+Content-Type: multipart/mixed; boundary=0022152d5fcdcb77630485706852
+
+--0022152d5fcdcb77630485706852
+Content-Type: multipart/alternative; boundary=0022152d5fcdcb775b0485706850
+
+--0022152d5fcdcb775b0485706850
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hi Begin,
+
+This is a Test mail to validate Mail Input and Drop API Functions.
+
+
+Thanks
+Begin Samuel
+
+--0022152d5fcdcb775b0485706850
+Content-Type: text/html; charset=ISO-8859-1
+
+Hi Begin,<br><br>This is a Test mail to validate Mail Input and Drop API Functions.<br clear="all"><br><br>Thanks<br>Begin Samuel<br>
+
+--0022152d5fcdcb775b0485706850--
+--0022152d5fcdcb77630485706852
+Content-Type: text/plain; charset=US-ASCII; name="dropio.txt"
+Content-Disposition: attachment; filename="dropio.txt"
+Content-Transfer-Encoding: base64
+X-Attachment-Id: f_g8mrsqmt0
+
+VXNlcm5hbWUgOiByaWNoZXJkDQpQYXNzd29yZCA6IHJpY2hlcmQxMjMNCkVtYWlsIDogcmljaGVy
+ZC5qZXN1c0BnbWFpbC5jb20NCktleSA6IGNiOWNiYzdjOGMwNWExMGJjNjEzOTMxZjljMmQ0ZmQw
+MjlkOTM2MmQNCmRyb3AgbmFtZSA6IHR3aXRkNGYNCg0KZGVmIGFzc2V0X3VwbG9hZA0KCURyb3Bp
+bzo6Q29uZmlnLmFwaV9rZXkgPSAiY2I5Y2JjN2M4YzA1YTEwYmM2MTM5MzFmOWMyZDRmZDAyOWQ5
+MzYyZCINCglEcm9waW86OkNvbmZpZy5kZWJ1ZyA9IHRydWUNCglhdXRoX2Ryb3AgPSBEcm9waW86
+OkRyb3AuZmluZCgidHdpdGQ0ZiIsInJpY2hlcmQxMjMiKQ0KCWF1dGhfZHJvcC5hZGRfZmlsZSgi
+amVzdXMuanBnIiwiY29tbWVudHMgZm9yIHBob3RvIikNCmVuZA0KDQoNCg0K
+--0022152d5fcdcb77630485706852--

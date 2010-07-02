@@ -1,0 +1,69 @@
+<%= render :partial=>'common/header' %>
+  <div class="tweet_content_holder">
+   <% form_for(:uploadfile,@upload_profile,:url=>'/home/upload_dropio', :html => {:multipart => true }) do |f| %>
+    <div class="tweet_left_column">
+      <div class="add_media_box">
+        <p class="box_heading">Add media now: <span class="upload_file"><%=flash[:file_upload_error]%></span></p>
+        <h1 class="box_row">
+          <label class="label_name">File</label>
+          <p class="buttons"><%= f.file_field 'file_field' -%></p>
+        </h1>
+        <h1 class="box_row">
+          <label class="label_name">Url</label>
+          <p class="buttons"><%= f.text_field :file_url  -%></p>
+        </h1>
+        <h1 class="box_row1">
+         <label class="label_name">Note</label>
+         <p class="text_fld"><%= f.text_area :description, :rows => '1', :cols => '27' %></p>
+         <p class="buttons1">
+           <%= f.hidden_field :user_id, :value => current_user.id %>
+           <%= image_submit_tag "/images/upload_btn.gif" %>
+         </p>
+        </h1>
+      </div>
+      <% if @medias.size > 0 %>
+        <% i = 0  %>
+        <% for media in @medias %>
+          <div class="add_media_box_small">
+            <h1 class="tweet_img_holder">
+              <%= link_to image_tag(@thumbnail[i] ,:border=>'0', :title=>media.description,:alt => media.description),:controller=>'medias',:action=>'show',:id=>media.encrypt_id -%>
+            </h1>
+            <p class="divider_image"><img src="/images/divider_img.gif" alt="" /></p>
+            <h2 class="tweet_message_txt">
+               <p class="tweet_bld_txt">
+                 <% if media.media_name != nil %>
+                  <%=media.media_name%>:
+                 <% else %>
+                  <%=media.name[0..20]%>:
+                 <% end %>                 
+                 <% if !media.description.nil? %>
+                   <%=media.description[0..30]%>
+                 <%end%>
+                <% if !media.description.nil? %><%=media.description[0..30]%><%end%></p>
+               <p class="tweet_bld_txt_small"><strong>Posted:</strong> <%=media.created_at.strftime("%m/%d/%Y")%> | <strong>Views:</strong> <%=media.view_count%> | <strong>Comments:</strong> <%=total_comment_count(media.id)%></p>
+            </h2>
+          </div>
+          <% i = i+1 %>
+        <% end %>
+        <div class="media_pagination"><%= will_paginate @medias %></div>        
+     <% else %>
+          <div class="add_media_box_small">
+            <h2 class="tweet_message_txt">
+              <p class="tweet_bld_txt">You haven't tweeted any media yet, get started!</p>
+            </h2>
+          </div>
+          <h3 class="more_btn"></h3>
+     <% end %>
+    </div>
+  <% end %>
+  <div class="tweet_right_column">
+    <div class="mobile_input">
+     <p class="box_heading_2">Mobile Input:</p>
+     <%if current_user.drop_name?%>
+      <p class="mobile_description"><strong>email:</strong> <%=current_user.drop_name%>@tweet.io</p>
+     <% end %>
+    </div>
+  </div>
+  <div class="clr"></div>
+ </div>
+<%= render :partial=>'common/footer' %>

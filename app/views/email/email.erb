@@ -1,0 +1,19 @@
+<%= render :partial=>'common/header' %>
+<% form_tag '/email/send_email',:method=>"post",:multipart => true do%>
+  <div class="post_middle add_media">
+    <div class="addmedia_holecontent">
+      <div class="addemail_content">
+        <div class="addmedia_content_leftbar"><img src="/images/addmedia_left.png" /></div>
+        <div class="addmedia_content_midbar"><h1>Local Email Client</h1> <h1><span style="color:red;"><%=flash[:email_notice]%></span></h1>
+          <div class="addmedia_note"><h1>Email&nbsp;:</h1><h2><%= text_field 'uploadfile', 'to_email'  -%></h2></div>
+          <div class="addmedia_file"><h1>File&nbsp;&nbsp;&nbsp;:</h1><h2><%= file_field 'uploadfile','file_field'%></h2></div>
+          <div class="addmedia_note"><h1>Sub&nbsp;:</h1><h2><%= text_field 'uploadfile','subject'  -%></h2></div>
+            <div class="addmedia_upload">            
+              <%= submit_tag "Submit" %></div>
+          </div>
+        </div>
+        <div class="addmedia_content_leftbar"><img src="/images/addmedia_right.png" /></div>
+      </div>
+    </div>
+ <% end %>
+<%= render :partial=>'common/footer' %>

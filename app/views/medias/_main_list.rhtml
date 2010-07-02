@@ -1,0 +1,49 @@
+<div class="tweet_content_holder_main">  
+    <% if @medias.size > 0 %>
+     <div class="tweet_left_column">
+      <% i = 0  %>
+      <% for media in @medias %>
+        <div class="add_media_box_small">
+          <h1 class="tweet_img_holder">
+            <% if !@thumbnail[i].nil? %>
+             <%= link_to image_tag(@thumbnail[i] ,:border=>'0', :title=>media.description,:alt => media.description),:controller=>'medias',:action=>'show',:id=>media.encrypt_id -%>
+            <% end %>
+          </h1>
+          <p class="divider_image"><img src="images/divider_img.gif" alt="" /></p>
+           <h2 class="tweet_message_txt">
+            <p class="tweet_bld_txt">
+              <% if media.media_name != nil %>
+                <%=media.media_name%>:
+              <% else %>
+                <%=media.name[0..20]%>:
+              <% end %>
+              <% if !media.description.nil? %>
+                 <%=media.description[0..30]%>
+              <%end%>
+            </p>
+            <p class="tweet_bld_txt_small">
+             <% if !media.created_at.nil? %><strong>Posted: </strong><%=media.created_at.strftime("%m/%d/%Y")%><%end%>
+             | <strong>Views: </strong><%=media.view_count%> | <strong>Comments: </strong><%=total_comment_count(media.id)%></p>
+           </h2>
+           <%if logged_in? %>
+              <%if media.user_id== current_user.id%>
+                <h2>
+                  <%=link_to image_tag("/images/delete.png",:style=>"border:0px;"), media_delete_path(media,:page=>params[:page]),  :method => :delete, :confirm => "Are you sure you want to delete ?" %>
+                </h2>
+             <%end%>
+            <%end%>
+        </div>
+        <% i = i+1 %>
+      <% end %>
+    </div>
+    <div class="pagination"><%= will_paginate @medias %></div>
+   <%else%>
+      <div class="tweet_left_column">
+        <div class="add_media_box_small">
+          There is no media in this category
+        </div>
+      </div>
+   <%end%>
+  <div clas="bottom_div"></div>
+  <div class="clr"></div>
+</div>

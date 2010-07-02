@@ -1,0 +1,124 @@
+<div class="tweet_content_holder_detail">
+    <div class="tweet_left_column">
+      <% if @media_error.nil? %>
+        <% if logged_in? %>
+          <h1 class="main_image_title">
+            <% form_tag "/medias/change_asset_name/#{params[:id]}", :method=>"post" do%>
+              <p class="picture_name"><%= text_field 'media','media_name',:value=>@media_details.media_name %></p>
+              <p class="rename_pic"><%= submit_tag 'Rename' %></p>
+            <% end %>
+          </h1>
+       <% end %>
+       <div style="clear:both;height:10px;"></div>
+       <div style="border:1px solid gray;text-align:center;">
+           <% if @media_details.content_id == 1%>
+              <% embed_text ="<img src=#{HOST}/medias/shared/#{@media_details.id}/#{@media_details.content_id}>"%>
+              <%if !@media_asset.large_thumbnail.nil? %>
+                <%=image_tag(@media_asset.large_thumbnail , :title=>@media_asset.description, :alt => @media_asset.description,:id => 'pic')%>
+              <%else%>
+                <%=image_tag(@media_asset.thumbnail , :title=>@media_asset.description, :alt => @media_asset.description,:id => 'pic')%>
+              <%end%>
+           <% elsif @media_details.content_id == 4%>
+              <a href="<%=@media_details.hidden_url%>">Click here to download</a>
+              <% embed_text = "<a href=#{HOST}/medias/shared/#{@media_details.id}/#{@media_details.content_id}>Click here to download</a>" %>
+           <% elsif @media_details.content_id == 2 or @media_details.content_id == 3 %>
+               <%=@media_asset.embed_code %>
+               <% embed_text = @media_asset.embed_code %>
+           <%end%>
+       </div>
+        <h2 class="mainimg_container">
+         <p class="picturemsg_dwn"><%=@media_details.description%></p>
+        </h2>
+       <%if logged_in?%>
+         <h2 class="mainimg_container">
+           <%= error_messages_for :comment %>
+         </h2>
+         <%= render :partial =>'comments/form',:locals => { :upload_file => @media_details} %>
+       <%else%>
+        <h2 class="mainimg_container">
+          <p>Please <%=link_to 'login','/login'%> to leave comments</p>
+        </h2>
+       <%end%>
+     <% else %>
+        <h2 class="mainimg_container">
+          <p class="picturemsg_dwn"><%=@media_error%></p>
+        </h2>
+     <% end %>
+     <% if !@comment_list.nil? and !@comment_list.empty? %>
+       <% @comment_list.each do |comment| %>
+          <% user_name = get_user_name_by_id(comment.users_id)
+             #user_image,desc = @controller.get_twitter_avatar_bio(comment.users_id)
+             user_image = ""
+             desc = ""
+          %>
+        <div class="add_media_box_small">
+        <h1 class="tweet_img_holder"><%= image_tag(user_image)%></h1>
+          <p class="divider_image"><img src="/images/divider_img.gif" alt="" /></p>
+        <h2 class="tweet_message_txt">
+          <p class="tweet_bld_txt"><%=user_name%></p>
+          <p class="posted_msgs_small_dt"><%=comment.comments%><span>(<%=(comment.created_at).strftime("%m.%d.%Y")%>)</span></p>
+        </h2>
+        </div>
+      <% end %>
+       <%= will_paginate @comment_list %>
+    <% end %>
+  </div>
+
+  <div class="tweet_right_column">
+   <ul class="tweet_person_signedin1">
+     <li class="login_image">
+       <% if !@user_image.nil? %>
+         <%=image_tag(@user_image) %>
+       <% end %>
+     </li>
+     <li class="login_name"><%=@user_name%></li>
+   </ul>
+   <ul class="posted_description">
+     <li>Posted: <%=(@media_details.created_at).strftime("%m/%d/%Y")%></li>
+     <li>Views: <%=@media_details.view_count%></li>
+     <li>Comments: <%=total_comment_count(@media_details.id)%></li>
+   </ul>
+   <div class="small_form_holder">
+    <h3 class="tweet_right_row_small">
+       <label class="share_label_name">Share</label>
+       <p class="share_txtbg_img">
+         <input name="" type="text" class="txtbox" value='<%=@share_url%>' />
+       </p>
+    </h3>
+    <h3 class="tweet_right_row_small">
+       <label class="share_label_name">Embed</label>
+       <p class="share_txtbg_img">
+         <input name="" type="text" class="txtbox" value='<%=embed_text%>' />
+       </p>
+    </h3>
+  </div>
+  <% if !@media_list.nil? and !@media_list.empty? %>
+    <% i = 0  %>    
+    <% for media in @media_list %>
+        <% total_comment = "" %>
+        <div class="post_media_small">
+          <h1 class="tweet_img_holder">
+            <% if !@thumbnail_list[i].nil? %><%= link_to image_tag(@thumbnail_list[i] ,:border=>'0', :title=>media.description, :alt => media.description),:controller=>'medias',:action=>'show',:id=>media.encrypt_id -%><% end %>
+          </h1>
+          <p class="divider_image"><img src="/images/divider_img.gif" alt="" /></p>
+          <h2 class="post_media_small_txt">
+            <ul class="posted_description_small">
+               <li>Posted: <%=(media.created_at).strftime("%m/%d/%Y")%></li>
+               <li>Views: <%=media.view_count%></li>
+               <% total_comment = total_comment_count(media.id)%>
+               <li>Comments: <%=total_comment%></li>
+            </ul>
+          </h2>
+        </div>
+     <% i = i+1 %>
+    <% end %>   
+  <%else%>
+    <div class="post_media_small">
+      <h1 class="tweet_img_holder"></h1>
+    </div>
+  <% end %>
+  <h3 class="more_btn1"><%= link_to(image_tag("/images/more_btn.gif") ,media_list_path("all")) %>
+</h3>
+  </div>
+  <div class="clr"></div>
+</div>

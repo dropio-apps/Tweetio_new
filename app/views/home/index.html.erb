@@ -1,0 +1,15 @@
+<%= render :partial=>'common/header' %>
+<div class="tweet_content_holder">
+  <h1 class="tweet_entry_holder">
+    <ul class="tweet_login_icons">
+       <li><span><%= link_to image_tag("/images/pictures_icon.gif"), media_list_path('image') %></span><%= link_to 'Pictures',media_list_path('image') %></li>
+       <li><span><%= link_to image_tag("/images/video_icon.gif"), media_list_path('video') %></span><%= link_to 'Video',media_list_path('video') %></li>
+       <li><span><%= link_to image_tag("/images/audio_icon.gif"), media_list_path('audio') %></span><%= link_to 'Audio',media_list_path('audio') %></li>
+       <li><span><%= link_to image_tag("/images/documents_icon.gif"), media_list_path('other') %></span><%= link_to 'Documents & More',media_list_path('other')%></li>
+    </ul>
+    <p class="tweet_curly_braces"><img src="/images/tweet_curly_braces.gif" alt="braces" /></p>
+    <p class="tweet_it_out"><strong>twitter:</strong> tweet it out</p>
+  </h1>
+  <div class="clr"></div>
+</div>
+<%= render :partial=>'common/footer' %>

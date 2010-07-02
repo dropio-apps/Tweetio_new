@@ -1,0 +1,19 @@
+xml.instruct!
+	## xml declarations ##
+xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
+xml.channel do
+   xml.title       "Twitt.io"
+   xml.link        "#{HOST}/home/"
+   xml.description "Twitt.io is a site to upload files and post comments on Twitter"
+    i = 0
+    @medias.each do |media|
+     xml.item do
+       xml.title       media.title
+       xml.link        "#{HOST}/medias/show/#{media.encrypt_id}"
+       xml.description  "<a href='#{HOST}/medias/show/#{media.encrypt_id}'><img src='#{@thumbnail[i]}'/></a>"
+       xml.guid "#{HOST}/medias/show/#{media.encrypt_id}"
+      end
+     i = i + 1
+   end
+ end
+end
