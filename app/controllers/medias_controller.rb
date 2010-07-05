@@ -101,8 +101,7 @@ class MediasController < ApplicationController
           @user_image,@user_desc = get_twitter_avatar_bio(user_id)
           @user_name = get_user_name_by_id(user_id)
           # find media with id in DB
-          @media_details = UploadFile.find(media_id)
-          render :text => "check#{@media_details.name}------------------#{@media_details.drop_name}"
+          @media_details = UploadFile.find(media_id)          
           # Find asset(media) in drop.io.Pass asset name as parameter
           @media_asset = asset_find(@media_details.name,@media_details.drop_name)          
           # Increase the view count
