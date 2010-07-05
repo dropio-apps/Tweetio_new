@@ -1,46 +1,121 @@
-<div class="tweet_content_holder_detail">
-    <div class="tweet_left_column">
+<div class="post_middle">
+  <div class="post_middle_leftcontent">
       <% if @media_error.nil? %>
         <% if logged_in? %>
-          <h1 class="main_image_title">
-            <% form_tag "/medias/change_asset_name/#{params[:id]}", :method=>"post" do%>
-              <p class="picture_name"><%= text_field 'media','media_name',:value=>@media_details.media_name %></p>
-              <p class="rename_pic"><%= submit_tag 'Rename' %></p>
-            <% end %>
-          </h1>
+          <% if current_user.id == @media_details.user_id %>
+            <div style="height:30px;">
+                <% form_tag "/medias/change_asset_name/#{params[:id]}", :method=>"post" do%>
+                  <%= text_field 'media','media_name',:value=>@media_details.media_name %>
+                  <%= submit_tag 'Edit' %>
+                <% end %>
+            </div>
+          <% end %>
         <% end %>
-       <div style="clear:both;height:10px;"></div>
-       <div style="border:1px solid gray;text-align:center;">
-           <% if @media_details.content_id == 1%>
-              <% embed_text ="<img src=#{HOST}/medias/shared/#{@media_details.id}/#{@media_details.content_id}>"%>
-              <%if !@media_asset.large_thumbnail.nil? %>
-                  <%=image_tag(@media_asset.large_thumbnail , :title=>@media_asset.description, :alt => @media_asset.description,:id => 'pic')%>
-              <%else%>
-                <%=image_tag(@media_asset.thumbnail , :title=>@media_asset.description, :alt => @media_asset.description,:id => 'pic')%>
-              <%end%>
-           <% elsif @media_details.content_id == 4%>
-              <a href="<%=@media_details.hidden_url%>">Click here to download</a>
-              <% embed_text = "<a href=#{HOST}/medias/shared/#{@media_details.id}/#{@media_details.content_id}>Click here to download</a>" %>
-           <% elsif @media_details.content_id == 2 or @media_details.content_id == 3 %>
-               <%=@media_asset.embed_code %>
-               <% embed_text = @media_asset.embed_code %>
-           <%end%>
-       </div>
-        <h2 class="mainimg_container">
-         <p class="picturemsg_dwn"><%=@media_details.description%></p>
-        </h2>
+         <% if @media_details.content_id == 1%>
+           <div class="post_middle_image">
+             <p>
+               <% embed_text ="<img src=#{HOST}/medias/shared/#{@media_details.id}/#{@media_details.content_id}>"%>
+                <%if !@media_asset.large_thumbnail.nil? %>
+                  <%=image_tag(@media_asset.large_thumbnail , :title=>@media_asset.description, :alt => @media_asset.description,:id => 'pic')%>                   
+                <%else%>                  
+                  <%=image_tag(@media_asset.thumbnail , :title=>@media_asset.description, :alt => @media_asset.description,:id => 'pic')%>                  
+                <%end%>
+             </p>
+           </div>
+        <% elsif @media_details.content_id == 4%>
+          <div class="post_middle_image_a">
+             <p>
+                <a href="<%=@media_details.hidden_url%>">Click here to download</a>
+                <% embed_text = "<a href=#{HOST}/medias/shared/#{@media_details.id}/#{@media_details.content_id}>Click here to download</a>" %>
+             </p>
+          </div>
+        <% elsif @media_details.content_id == 2 or @media_details.content_id == 3 %>
+          <div class="post_middle_image">
+             <p>
+                <!--Embed code for media(audio & video) -->
+                <%=@media_asset.embed_code %>
+                <% embed_text = @media_asset.embed_code %>
+             </p>
+           </div>
+        <%end%>
+      
        <%if logged_in?%>
-         <h2 class="mainimg_container">
+         <div class="post_middle_image_1">
            <%= error_messages_for :comment %>
-         </h2>
-         <%= render :partial =>'comments/form',:locals => { :upload_file => @media_details} %>
+         </div>
+          <%= render :partial =>'comments/form',:locals => { :upload_file => @media_details} %>
        <%else%>
-        <h2 class="mainimg_container">
+        <div class="post_middle_image_1">
           <p>Please <%=link_to 'login','/login'%> to leave comments</p>
-        </h2>
+        </div>
        <%end%>
-     <% else %>
-        <h2 class="mainimg_container">
-          <p class="picturemsg_dwn"><%=@media_error%></p>
-        </h2>
-     <% end %>
+  <%else%>
+    <div class="post_middle_image_error"><p><%=@media_error%></p></div>
+  <% end %>
+  </div>
+
+<div class="post_middle_rightcontent">
+  <div class="post_middle_rightcontent_top"><img src="/images/post_righthead_topp.png" /></div>
+  <div class="post_middle_rightcontent_middle">     
+    <div class="post_middle_rightcontent_topheading">
+      <% if !@user_image.nil? %>
+        <p><%=image_tag(@user_image,:height=>"75",:width=>"75")%></p><h1><%=@user_name%></h1>
+      <% end  %>
+      <% if !@media_details.nil? %>
+        <h2>Posted&nbsp;&nbsp;<%day_pos = @media_details.created_at.strftime('%d')%><b><%=(@media_details.created_at).strftime("%b %d#{format_date(day_pos)}, %Y")%></b></h2>
+        <h2>Views&nbsp;&nbsp;<%=@media_details.view_count%></h2>
+        <h2>Comments&nbsp;&nbsp;<%=total_comment_count(@media_details.id)%></h2>
+      <% end %>
+    </div>
+    
+  <div class="post_middle_rightcontent_topheading_share"><h1>Share</h1><h2> <input name="" type="text" value='<%=@share_url%>' class="post_textfield" /></h2></div>
+  <div class="post_middle_rightcontent_topheading_share"><h1>Embed</h1><h2> <input name="" type="text" value='<%=embed_text%>' class="post_textfield" /></h2></div>
+    <div class="post_middle_rightcontent_scrollbar_top">
+      <div class="post_middle_rightcontent_scrollbar_topimage"><img src="/images/postscroll_left.png" /></div>
+        <div class="post_middle_rightcontent_scrollbar_middleimage">
+          <div class="post_middle_rightcontent_scrollbar_bg">
+              <% if !@media_list.nil? and !@media_list.empty? %>
+                <% i = 0  %>
+                <% for media in @media_list %>                  
+                    <% total_comment = "" %>
+                    <div class="post_postview_comments">
+                      <h1><div class="thumb_media"><% if !@thumbnail_list[i].nil? %><%= link_to image_tag(@thumbnail_list[i] ,:width=>"50px",:height=>"50px",:border=>'0', :title=>media.description, :alt => media.description),:controller=>'medias',:action=>'show',:id=>media.encrypt_id -%><% end %></div></h1><h2>Posted&nbsp;&nbsp;<%day_pos = media.created_at.strftime('%d')%><b><%=(media.created_at).strftime("%b %d#{format_date(day_pos)}, %Y")%></b></h2><h3>Views&nbsp;&nbsp;<%=media.view_count%></h3>
+                      <h3><% total_comment = total_comment_count(media.id)%>Comments&nbsp;<%=total_comment%></h3>
+                    </div>                 
+                 <% i = i+1 %>
+                <% end %>
+             <%else%>
+                  <h3 style="color:#004CA8;float:left;font-size:12px;font-weight:bold;margin-bottom:0;margin-left:1px;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:25px;">
+                    No recent media            
+                  </h3>
+             <%end-%>
+          </div>
+      </div>
+      <div class="post_middle_rightcontent_scrollbar_topimage"><img src="/images/postscroll_right.png" /></div>
+    </div>
+  </div>
+  <div class="post_middle_rightcontent_top"><img src="/images/post_righthead_bottom.png" /></div>
+</div>
+
+<% if !@comment_list.nil? and !@comment_list.empty? %>
+    <div class="addmedia_awesome_holecontent">
+      <div class="addmedia_awesome_holecontent_left"><img src="/images/add_middle_left.png" /></div>
+      <div class="addmedia_awesome_holecontent_mid">
+        <% @comment_list.each do |comment| %>
+          <% user_name = get_user_name_by_id(comment.users_id)
+             user_image,desc = @controller.get_twitter_avatar_bio(comment.users_id)
+          %>
+          <div class="addmedia_awesome_holecontent_mid_subcontent"><p><%=image_tag(user_image)%> </p><h1><%=user_name%>: <%=comment.comments%></h1><h2>Posted: <% day_pos = comment.created_at.strftime('%d')%><%=(comment.created_at).strftime("%b %d#{format_date(day_pos)}, %Y")%></h2>
+            <% if logged_in? %>
+              <h3><%=link_to 'Delete',comment_delete_path(comment.id) ,:confirm=>"Are you sure you want to delete this comment?" %></h3>
+            <%end %>
+          </div>
+        <% end %>
+        <div class="pagination">
+        <%= will_paginate @comment_list %>
+        </div>
+      </div>
+      <div class="addmedia_awesome_holecontent_left"><img src="/images/add_middle_right.png" /></div>
+    </div>     
+  <%end%>
+</div>
