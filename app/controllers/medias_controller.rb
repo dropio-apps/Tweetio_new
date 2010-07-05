@@ -112,11 +112,10 @@ class MediasController < ApplicationController
           @comment = Comment.new(:id => @media_details)
           media_list(@media_details.user_id,media_id)          
           @comment_list = @media_details.comments.paginate(:per_page=>5,:page => params[:page], :order => 'created_at DESC')
-          
           @detail_page = true
           @share_url =  HOST+"/medias/show/"+params[:id]
-        rescue
-          render :text => "is it comming here here"
+          render :text=> "no problem in controller"
+        rescue          
           # Error message display, If file is delete from DB and Drop.io
           @media_error = "Media no longer Exist"
         end
