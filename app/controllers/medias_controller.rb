@@ -107,11 +107,11 @@ class MediasController < ApplicationController
           # Increase the view count
           if flash[:comment_update] != "false"
             @media_details.increment!(:view_count)
-          end
-          render :text => @media_asset.inspect
+          end          
           # Create comment object
           @comment = Comment.new(:id => @media_details)
           media_list(@media_details.user_id,media_id)
+          render :text => "any problem here"
           @comment_list = @media_details.comments.paginate(:per_page=>5,:page => params[:page], :order => 'created_at DESC')
           @detail_page = true
           @share_url =  HOST+"/medias/show/"+params[:id]
