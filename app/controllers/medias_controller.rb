@@ -91,15 +91,14 @@ class MediasController < ApplicationController
 
   # Media details method
   def show
-      media_id = get_file_id_by_encrypt_id(params[:id])
-      render :text=> media_id
+      media_id = get_file_id_by_encrypt_id(params[:id])      
       if media_id == 0        
         # Error message display, If file is delete from DB and Drop.io
         @media_error = "Media no longer Exist"
       else
         begin		  
           user_id = get_user_id_media_id(media_id)         
-		  @user_image,@user_desc = get_twitter_avatar_bio(user_id)          
+          @user_image,@user_desc = get_twitter_avatar_bio(user_id)
           @user_name = get_user_name_by_id(user_id)
           # find media with id in DB
           @media_details = UploadFile.find(media_id)
@@ -111,6 +110,7 @@ class MediasController < ApplicationController
           if flash[:comment_update] != "false"
             @media_details.increment!(:view_count)
           end
+          render :text => "comming with out error"
           # Create comment object
           @comment = Comment.new(:id => @media_details)
           media_list(@media_details.user_id,media_id)
