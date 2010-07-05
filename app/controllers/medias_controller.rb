@@ -110,9 +110,9 @@ class MediasController < ApplicationController
           end          
           # Create comment object
           @comment = Comment.new(:id => @media_details)
-          media_list(@media_details.user_id,media_id)
-          render :text => "any problem here"
+          media_list(@media_details.user_id,media_id)          
           @comment_list = @media_details.comments.paginate(:per_page=>5,:page => params[:page], :order => 'created_at DESC')
+          render :text => "Nothing problem here"
           @detail_page = true
           @share_url =  HOST+"/medias/show/"+params[:id]
         rescue          
