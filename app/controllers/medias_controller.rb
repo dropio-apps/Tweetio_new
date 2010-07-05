@@ -92,6 +92,7 @@ class MediasController < ApplicationController
   # Media details method
   def show
       media_id = get_file_id_by_encrypt_id(params[:id])
+      render :text=> media_id
       if media_id == 0        
         # Error message display, If file is delete from DB and Drop.io
         @media_error = "Media no longer Exist"
