@@ -199,7 +199,7 @@ class MediasController < ApplicationController
   def media_list(user_id,media_id)
      @media_list = UploadFile.find(:all,:select=>"*",:order => 'created_at DESC',:limit=>3,:conditions=>["user_id=? AND id NOT IN(#{media_id})",user_id])
      @thumbnail_list = Array.new
-     @media_list.each do |media|
+     @media_list.each do |media|       
         asset_name = media.name
         asset_obj = asset_find(asset_name,media.drop_name)
         if !asset_obj.thumbnail.nil?
