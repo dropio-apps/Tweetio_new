@@ -91,29 +91,30 @@ class MediasController < ApplicationController
 
   # Media details method
   def show
-      media_id = get_file_id_by_encrypt_id(params[:id])      
+      media_id = get_file_id_by_encrypt_id(params[:id])
       if media_id == 0        
         # Error message display, If file is delete from DB and Drop.io
         @media_error = "Media no longer Exist"
       else
         begin		  
           user_id = get_user_id_media_id(media_id)         
-          @user_image,@user_desc = get_twitter_avatar_bio(user_id)
+		      @user_image,@user_desc = get_twitter_avatar_bio(user_id)
           @user_name = get_user_name_by_id(user_id)
           # find media with id in DB
-          @media_details = UploadFile.find(media_id)          
+          @media_details = UploadFile.find(media_id)
           # Find asset(media) in drop.io.Pass asset name as parameter
-          @media_asset = asset_find(@media_details.name,@media_details.drop_name)          
+          @media_asset = asset_find(@media_details.name,@media_details.drop_name)
+          render :text=>"#{@media_asset.large_thumbnail}____#{@media_details.content_id}"
           # Increase the view count
           if flash[:comment_update] != "false"
             @media_details.increment!(:view_count)
-          end          
+          end
           # Create comment object
           @comment = Comment.new(:id => @media_details)
-          media_list(@media_details.user_id,media_id)          
+          media_list(@media_details.user_id,media_id)
           @comment_list = @media_details.comments.paginate(:per_page=>5,:page => params[:page], :order => 'created_at DESC')
           @detail_page = true
-          @share_url =  HOST+"/medias/show/"+params[:id]          
+          @share_url =  HOST+"/medias/show/"+params[:id]
         rescue          
           # Error message display, If file is delete from DB and Drop.io
           @media_error = "Media no longer Exist"
@@ -198,7 +199,7 @@ class MediasController < ApplicationController
   def media_list(user_id,media_id)
      @media_list = UploadFile.find(:all,:select=>"*",:order => 'created_at DESC',:limit=>3,:conditions=>["user_id=? AND id NOT IN(#{media_id})",user_id])
      @thumbnail_list = Array.new
-     @media_list.each do |media|       
+     @media_list.each do |media|
         asset_name = media.name
         asset_obj = asset_find(asset_name,media.drop_name)
         if !asset_obj.thumbnail.nil?
