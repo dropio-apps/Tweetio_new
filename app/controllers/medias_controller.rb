@@ -108,7 +108,7 @@ class MediasController < ApplicationController
           if flash[:comment_update] != "false"
             @media_details.increment!(:view_count)
           end
-          render :text => @media_asset
+          render :text => @media_asset.inspect
           # Create comment object
           @comment = Comment.new(:id => @media_details)
           media_list(@media_details.user_id,media_id)
