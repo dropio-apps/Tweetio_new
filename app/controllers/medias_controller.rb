@@ -66,14 +66,10 @@ class MediasController < ApplicationController
     @thumbnail = Array.new
     @medias.each do |media|
       asset_name = media.name
-      puts "::::::::::::::::::::::::::::::::::::::::::::::::::"
-      puts asset_name
-      puts media.drop_name
-      puts "::::::::::::::::::::::::::::::::::::::::::::::::::"
       asset_obj = asset_find(asset_name,media.drop_name)
-      puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-      puts asset_obj.thumbnail
-      puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+	  puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+	  puts asset_obj.thumbnail
+	  puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
       if !asset_obj.thumbnail.nil?
         @thumbnail << asset_obj.thumbnail
       else
@@ -97,33 +93,34 @@ class MediasController < ApplicationController
   end
 
   # Media details method
-  def show
+  def show		
       media_id = get_file_id_by_encrypt_id(params[:id])
       if media_id == 0        
         # Error message display, If file is delete from DB and Drop.io
         @media_error = "Media no longer Exist"
       else
-        begin		  
+        begin				
           user_id = get_user_id_media_id(media_id)         
 		  @user_image,@user_desc = get_twitter_avatar_bio(user_id)          
           @user_name = get_user_name_by_id(user_id)
           # find media with id in DB
           @media_details = UploadFile.find(media_id)
           # Find asset(media) in drop.io.Pass asset name as parameter
-          #@media_asset = asset_find(@media_details.name,@media_details.drop_name)
-          @media_asset = Array.new
-          @media_asset.large_thumbnail = "sdfsdf"
+          @media_asset = asset_find(@media_details.name,@media_details.drop_name)
+          
           # Increase the view count
           if flash[:comment_update] != "false"
             @media_details.increment!(:view_count)
           end
+		  
           # Create comment object
           @comment = Comment.new(:id => @media_details)
           media_list(@media_details.user_id,media_id)
           @comment_list = @media_details.comments.paginate(:per_page=>5,:page => params[:page], :order => 'created_at DESC')
           @detail_page = true
           @share_url =  HOST+"/medias/show/"+params[:id]
-        rescue          
+        rescue 
+				
           # Error message display, If file is delete from DB and Drop.io
           @media_error = "Media no longer Exist"
         end
