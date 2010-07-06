@@ -15,7 +15,8 @@ protect_from_forgery :only => [:update, :delete, :create]
   # Include Helper class
   def message
     puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!initiatyed"
-	mail = TMail::Mail.parse(params[:email])	
+  email = STDIN.read
+	mail = TMail::Mail.parse(email)	
   description = mail.subject  
 	mailstr = mail.to
 	mailstr = mailstr.to_s
