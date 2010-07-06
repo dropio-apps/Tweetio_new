@@ -14,8 +14,10 @@ protect_from_forgery :only => [:update, :delete, :create]
   
   # Include Helper class
   def message
-render :text => params[:email]
-	mail = TMail::Mail.parse(params[:email])	
+
+    file1 = File.open("textmail.eml")
+    email = file1.read
+	mail = TMail::Mail.parse(email)
   description = mail.subject  
 	mailstr = mail.to
 	mailstr = mailstr.to_s

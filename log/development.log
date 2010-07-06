@@ -3136,3 +3136,615 @@ ActionController::RoutingError (No route matches "/medias/list/images/divider_im
   
 
 Rendering rescues/layout (not_found)
+** TwitterAuth initialized properly.
+  [4;36;1mSQL (32.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-07-06 11:27:36) [GET]
+
+Gem::LoadError (Could not find RubyGem yajl-ruby (~> 0.7.0)
+):
+  c:/ruby/lib/ruby/site_ruby/1.8/rubygems.rb:777:in `report_activate_error'
+  c:/ruby/lib/ruby/site_ruby/1.8/rubygems.rb:211:in `activate'
+  c:/ruby/lib/ruby/site_ruby/1.8/rubygems.rb:246:in `activate'
+  c:/ruby/lib/ruby/site_ruby/1.8/rubygems.rb:245:in `each'
+  c:/ruby/lib/ruby/site_ruby/1.8/rubygems.rb:245:in `activate'
+  app/controllers/home_controller.rb:16
+
+Rendered rescues/_trace (94.0ms)
+Rendered rescues/_request_and_response (0.0ms)
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#show (for 127.0.0.1 at 2010-07-06 11:27:49) [GET]
+  Parameters: {"id"=>"mzfspGGRQa"}
+
+MissingSourceFile (no such file to load -- twitter):
+  app/controllers/medias_controller.rb:14
+
+Rendered rescues/_trace (140.0ms)
+Rendered rescues/_request_and_response (0.0ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MediasController#show (for 127.0.0.1 at 2010-07-06 11:27:58) [GET]
+  Parameters: {"id"=>"mzfspGGRQa"}
+  [4;35;1mUploadFile Load (172.0ms)[0m   [0mSELECT id FROM `upload_files` WHERE (encrypt_id='mzfspGGRQa') LIMIT 1[0m
+  [4;36;1mUploadFile Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `upload_files`[0m
+  [4;35;1mUploadFile Load (0.0ms)[0m   [0mSELECT user_id FROM `upload_files` WHERE (id=11) LIMIT 1[0m
+  [4;36;1mUser Columns (62.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (id=1) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering medias/show
+  [4;36;1mUser Load (16.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (remember_token = 'afb3b8d37b0fe8d6766a' AND remember_token_expires_at > '2010-07-06 11:28:00') LIMIT 1[0m
+
+ActionView::TemplateError (can't convert nil into String) on line #21 of app/views/common/_header.erb:
+18:     <h1 class="tweet_login_holder">
+19:        <ul class="tweet_person_signedin">
+20:           <li class="login_name"><%= link_to current_user.name,medias_user_path(current_user.login)%><span><%=link_to 'Logout','/logout' %></span></li>
+21:           <li class="login_image"><%=image_tag @user_image%></li>
+22:        </ul>
+23:     </h1>
+24:    </div>
+
+    app/views/common/_header.erb:21
+    app/views/medias/show.html.erb:1
+
+Rendered rescues/_trace (406.0ms)
+Rendered rescues/_request_and_response (16.0ms)
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MediasController#user_media (for 127.0.0.1 at 2010-07-06 11:28:11) [GET]
+  Parameters: {"login"=>"all"}
+  [4;36;1mUser Columns (15.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT id FROM `users` WHERE (login='all') LIMIT 1[0m
+Redirected to http://localhost:3000/home
+Completed in 47ms (DB: 15) | 302 Found [http://localhost/medias/all]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-07-06 11:28:11) [GET]
+
+MissingSourceFile (no such file to load -- twitter):
+  app/controllers/home_controller.rb:16
+
+Rendered rescues/_trace (78.0ms)
+Rendered rescues/_request_and_response (0.0ms)
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MediasController#index (for 127.0.0.1 at 2010-07-06 11:28:23) [GET]
+  Parameters: {"type"=>"image"}
+  [4;36;1mContent Columns (47.0ms)[0m   [0;1mSHOW FIELDS FROM `contents`[0m
+  [4;35;1mContent Load (0.0ms)[0m   [0mSELECT * FROM `contents` WHERE (`contents`.`content_type` = 'image') LIMIT 1[0m
+  [4;36;1mUploadFile Load (0.0ms)[0m   [0;1mSELECT * FROM `upload_files` WHERE (content_id=1) ORDER BY created_at DESC LIMIT 0, 5[0m
+  [4;35;1mUploadFile Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `upload_files`[0m
+  [4;36;1mSQL (15.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `upload_files` WHERE (content_id=1) [0m
+Rendering template within layouts/application
+Rendering medias/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (remember_token = 'afb3b8d37b0fe8d6766a' AND remember_token_expires_at > '2010-07-06 11:28:56') LIMIT 1[0m
+Rendered common/_header (31.0ms)
+  [4;35;1mComment Columns (47.0ms)[0m   [0mSHOW FIELDS FROM `comments`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=19) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=4) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=6) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=8) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=9) [0m
+Rendered medias/_main_list (702.0ms)
+Rendered common/_footer (16.0ms)
+Completed in 34204ms (View: 765, DB: 109) | 200 OK [http://localhost/medias/list/image]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-07-06 11:28:57) [GET]
+  Parameters: {"1278064741"=>nil}
+
+ActionController::RoutingError (No route matches "/images/" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-07-06 11:28:57) [GET]
+
+ActionController::RoutingError (No route matches "/medias/list/images/divider_img.gif" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MediasController#index (for 127.0.0.1 at 2010-07-06 11:29:11) [GET]
+  Parameters: {"type"=>"image"}
+  [4;36;1mContent Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `contents`[0m
+  [4;35;1mContent Load (15.0ms)[0m   [0mSELECT * FROM `contents` WHERE (`contents`.`content_type` = 'image') LIMIT 1[0m
+  [4;36;1mUploadFile Load (0.0ms)[0m   [0;1mSELECT * FROM `upload_files` WHERE (content_id=1) ORDER BY created_at DESC LIMIT 0, 5[0m
+  [4;35;1mUploadFile Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `upload_files`[0m
+  [4;36;1mSQL (16.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `upload_files` WHERE (content_id=1) [0m
+Rendering template within layouts/application
+Rendering medias/index
+  [4;35;1mUser Columns (16.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (remember_token = 'afb3b8d37b0fe8d6766a' AND remember_token_expires_at > '2010-07-06 11:29:47') LIMIT 1[0m
+Rendered common/_header (31.0ms)
+  [4;35;1mComment Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `comments`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=19) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=4) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=6) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=8) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=9) [0m
+Rendered medias/_main_list (78.0ms)
+Rendered common/_footer (0.0ms)
+Completed in 36046ms (View: 93, DB: 47) | 200 OK [http://localhost/medias/list/image]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-07-06 11:29:48) [GET]
+  Parameters: {"1278064741"=>nil}
+
+ActionController::RoutingError (No route matches "/images/" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-07-06 11:29:48) [GET]
+
+ActionController::RoutingError (No route matches "/medias/list/images/divider_img.gif" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+** TwitterAuth initialized properly.
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MediasController#index (for 127.0.0.1 at 2010-07-06 11:35:03) [GET]
+  Parameters: {"type"=>"image"}
+  [4;36;1mContent Columns (15.0ms)[0m   [0;1mSHOW FIELDS FROM `contents`[0m
+  [4;35;1mContent Load (0.0ms)[0m   [0mSELECT * FROM `contents` WHERE (`contents`.`content_type` = 'image') LIMIT 1[0m
+  [4;36;1mUploadFile Load (0.0ms)[0m   [0;1mSELECT * FROM `upload_files` WHERE (content_id=1) ORDER BY created_at DESC LIMIT 0, 5[0m
+  [4;35;1mUploadFile Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `upload_files`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `upload_files` WHERE (content_id=1) [0m
+Rendering template within layouts/application
+Rendering medias/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (16.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (remember_token = 'afb3b8d37b0fe8d6766a' AND remember_token_expires_at > '2010-07-06 11:35:33') LIMIT 1[0m
+Rendered common/_header (16.0ms)
+  [4;35;1mComment Columns (15.0ms)[0m   [0mSHOW FIELDS FROM `comments`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=19) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=4) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=6) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=8) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=9) [0m
+Rendered medias/_main_list (94.0ms)
+Rendered common/_footer (0.0ms)
+Completed in 30355ms (View: 94, DB: 46) | 200 OK [http://localhost/medias/list/image]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-07-06 11:35:33) [GET]
+  Parameters: {"1278064741"=>nil}
+
+ActionController::RoutingError (No route matches "/images/" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-07-06 11:35:33) [GET]
+
+ActionController::RoutingError (No route matches "/medias/list/images/divider_img.gif" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MediasController#index (for 127.0.0.1 at 2010-07-06 11:37:27) [GET]
+  Parameters: {"type"=>"image"}
+  [4;36;1mContent Columns (16.0ms)[0m   [0;1mSHOW FIELDS FROM `contents`[0m
+  [4;35;1mContent Load (0.0ms)[0m   [0mSELECT * FROM `contents` WHERE (`contents`.`content_type` = 'image') LIMIT 1[0m
+  [4;36;1mUploadFile Load (0.0ms)[0m   [0;1mSELECT * FROM `upload_files` WHERE (content_id=1) ORDER BY created_at DESC LIMIT 0, 5[0m
+  [4;35;1mUploadFile Columns (15.0ms)[0m   [0mSHOW FIELDS FROM `upload_files`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `upload_files` WHERE (content_id=1) [0m
+Rendering template within layouts/application
+Rendering medias/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (remember_token = 'afb3b8d37b0fe8d6766a' AND remember_token_expires_at > '2010-07-06 11:38:00') LIMIT 1[0m
+Rendered common/_header (31.0ms)
+  [4;35;1mComment Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `comments`[0m
+  [4;36;1mSQL (16.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=19) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=4) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=6) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=8) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=9) [0m
+Rendered medias/_main_list (109.0ms)
+Rendered common/_footer (0.0ms)
+Completed in 33263ms (View: 140, DB: 47) | 200 OK [http://localhost/medias/list/image]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-07-06 11:38:01) [GET]
+  Parameters: {"1278064741"=>nil}
+
+ActionController::RoutingError (No route matches "/images/" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-07-06 11:38:01) [GET]
+
+ActionController::RoutingError (No route matches "/medias/list/images/divider_img.gif" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+** TwitterAuth initialized properly.
+** TwitterAuth initialized properly.
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-07-06 22:15:27) [GET]
+
+Gem::LoadError (Could not find RubyGem yajl-ruby (~> 0.7.0)
+):
+  c:/ruby/lib/ruby/site_ruby/1.8/rubygems.rb:777:in `report_activate_error'
+  c:/ruby/lib/ruby/site_ruby/1.8/rubygems.rb:211:in `activate'
+  c:/ruby/lib/ruby/site_ruby/1.8/rubygems.rb:246:in `activate'
+  c:/ruby/lib/ruby/site_ruby/1.8/rubygems.rb:245:in `each'
+  c:/ruby/lib/ruby/site_ruby/1.8/rubygems.rb:245:in `activate'
+  app/controllers/home_controller.rb:16
+
+Rendered rescues/_trace (94.0ms)
+Rendered rescues/_request_and_response (0.0ms)
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2010-07-06 22:15:49) [GET]
+Rendering template within layouts/application
+Rendering home/index
+  [4;36;1mUser Columns (78.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (remember_token = 'afb3b8d37b0fe8d6766a' AND remember_token_expires_at > '2010-07-06 22:15:50') LIMIT 1[0m
+Rendered common/_header (454.0ms)
+Rendered common/_footer (15.0ms)
+Completed in 656ms (View: 578, DB: 78) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-07-06 22:15:50) [GET]
+  Parameters: {"1278064741"=>nil}
+
+ActionController::RoutingError (No route matches "/images/" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-07-06 22:15:52) [GET]
+  Parameters: {"type"=>"image"}
+
+MissingSourceFile (no such file to load -- twitter):
+  app/controllers/medias_controller.rb:14
+
+Rendered rescues/_trace (78.0ms)
+Rendered rescues/_request_and_response (0.0ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MediasController#index (for 127.0.0.1 at 2010-07-06 22:16:00) [GET]
+  Parameters: {"type"=>"image"}
+  [4;35;1mContent Columns (47.0ms)[0m   [0mSHOW FIELDS FROM `contents`[0m
+  [4;36;1mContent Load (0.0ms)[0m   [0;1mSELECT * FROM `contents` WHERE (`contents`.`content_type` = 'image') LIMIT 1[0m
+  [4;35;1mUploadFile Load (78.0ms)[0m   [0mSELECT * FROM `upload_files` WHERE (content_id=1) ORDER BY created_at DESC LIMIT 0, 5[0m
+  [4;36;1mUploadFile Columns (31.0ms)[0m   [0;1mSHOW FIELDS FROM `upload_files`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `upload_files` WHERE (content_id=1) [0m
+Rendering template within layouts/application
+Rendering medias/index
+  [4;36;1mUser Columns (15.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (remember_token = 'afb3b8d37b0fe8d6766a' AND remember_token_expires_at > '2010-07-06 22:16:17') LIMIT 1[0m
+Rendered common/_header (31.0ms)
+  [4;36;1mComment Columns (47.0ms)[0m   [0;1mSHOW FIELDS FROM `comments`[0m
+  [4;35;1mSQL (15.0ms)[0m   [0mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=19) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=4) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=6) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=8) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=9) [0m
+Rendered medias/_main_list (735.0ms)
+Rendered common/_footer (0.0ms)
+Completed in 17213ms (View: 720, DB: 233) | 200 OK [http://localhost/medias/list/image]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-07-06 22:16:18) [GET]
+  Parameters: {"1278064741"=>nil}
+
+ActionController::RoutingError (No route matches "/images/" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-07-06 22:16:18) [GET]
+
+ActionController::RoutingError (No route matches "/medias/list/images/divider_img.gif" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MediasController#show (for 127.0.0.1 at 2010-07-06 22:16:21) [GET]
+  Parameters: {"id"=>"Qe4grU7bpC"}
+  [4;35;1mUploadFile Load (0.0ms)[0m   [0mSELECT id FROM `upload_files` WHERE (encrypt_id='Qe4grU7bpC') LIMIT 1[0m
+  [4;36;1mUploadFile Columns (16.0ms)[0m   [0;1mSHOW FIELDS FROM `upload_files`[0m
+  [4;35;1mUploadFile Load (0.0ms)[0m   [0mSELECT user_id FROM `upload_files` WHERE (id=19) LIMIT 1[0m
+  [4;36;1mUser Columns (63.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (id=1) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering medias/show
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (remember_token = 'afb3b8d37b0fe8d6766a' AND remember_token_expires_at > '2010-07-06 22:16:22') LIMIT 1[0m
+
+ActionView::TemplateError (can't convert nil into String) on line #21 of app/views/common/_header.erb:
+18:     <h1 class="tweet_login_holder">
+19:        <ul class="tweet_person_signedin">
+20:           <li class="login_name"><%= link_to current_user.name,medias_user_path(current_user.login)%><span><%=link_to 'Logout','/logout' %></span></li>
+21:           <li class="login_image"><%=image_tag @user_image%></li>
+22:        </ul>
+23:     </h1>
+24:    </div>
+
+    app/views/common/_header.erb:21
+    app/views/medias/show.html.erb:1
+
+Rendered rescues/_trace (109.0ms)
+Rendered rescues/_request_and_response (0.0ms)
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MediasController#show (for 127.0.0.1 at 2010-07-06 22:17:00) [GET]
+  Parameters: {"id"=>"Qe4grU7bpC"}
+  [4;36;1mUploadFile Load (16.0ms)[0m   [0;1mSELECT id FROM `upload_files` WHERE (encrypt_id='Qe4grU7bpC') LIMIT 1[0m
+  [4;35;1mUploadFile Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `upload_files`[0m
+  [4;36;1mUploadFile Load (0.0ms)[0m   [0;1mSELECT user_id FROM `upload_files` WHERE (id=19) LIMIT 1[0m
+  [4;35;1mUser Columns (16.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT name FROM `users` WHERE (id=1) LIMIT 1[0m
+  [4;35;1mUploadFile Load (0.0ms)[0m   [0mSELECT * FROM `upload_files` WHERE (`upload_files`.`id` = 19) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mUploadFile Update (0.0ms)[0m   [0mUPDATE `upload_files` SET `view_count` = 36, `updated_at` = '2010-07-06 16:47:05' WHERE `id` = 19[0m
+  [4;36;1mSQL (31.0ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mComment Columns (16.0ms)[0m   [0mSHOW FIELDS FROM `comments`[0m
+WARNING: Can't mass-assign these protected attributes: id
+  [4;36;1mUploadFile Load (0.0ms)[0m   [0;1mSELECT * FROM `upload_files` WHERE (user_id=1 AND id NOT IN(19)) ORDER BY created_at DESC LIMIT 3[0m
+  [4;35;1mComment Load (0.0ms)[0m   [0mSELECT * FROM `comments` WHERE (`comments`.upload_file_id = 19) ORDER BY created_at DESC, created_at DESC LIMIT 0, 5[0m
+Rendering template within layouts/application
+Rendering medias/show
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (remember_token = 'afb3b8d37b0fe8d6766a' AND remember_token_expires_at > '2010-07-06 22:17:17') LIMIT 1[0m
+Rendered common/_header (0.0ms)
+Rendered comments/_form (15.0ms)
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=19) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=4) [0m
+  [4;35;1mSQL (16.0ms)[0m   [0mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=6) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=8) [0m
+Rendered medias/_show_media (78.0ms)
+Rendered common/_footer (0.0ms)
+Completed in 16901ms (View: 78, DB: 95) | 200 OK [http://localhost/medias/show/Qe4grU7bpC]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-07-06 22:17:17) [GET]
+  Parameters: {"1278064741"=>nil}
+
+ActionController::RoutingError (No route matches "/images/" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-07-06 22:17:17) [GET]
+
+ActionController::RoutingError (No route matches "/images/post_righthead_topp.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-07-06 22:17:17) [GET]
+
+ActionController::RoutingError (No route matches "/images/postscroll_left.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-07-06 22:17:18) [GET]
+
+ActionController::RoutingError (No route matches "/images/postscroll_right.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-07-06 22:17:18) [GET]
+
+ActionController::RoutingError (No route matches "/images/post_righthead_bottom.png" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MediasController#show (for 127.0.0.1 at 2010-07-06 22:23:42) [GET]
+  Parameters: {"id"=>"Qe4grU7bpC"}
+  [4;35;1mUploadFile Load (0.0ms)[0m   [0mSELECT id FROM `upload_files` WHERE (encrypt_id='Qe4grU7bpC') LIMIT 1[0m
+  [4;36;1mUploadFile Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `upload_files`[0m
+  [4;35;1mUploadFile Load (16.0ms)[0m   [0mSELECT user_id FROM `upload_files` WHERE (id=19) LIMIT 1[0m
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (15.0ms)[0m   [0mSELECT name FROM `users` WHERE (id=1) LIMIT 1[0m
+  [4;36;1mUploadFile Load (0.0ms)[0m   [0;1mSELECT * FROM `upload_files` WHERE (`upload_files`.`id` = 19) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mUploadFile Update (0.0ms)[0m   [0;1mUPDATE `upload_files` SET `view_count` = 37, `updated_at` = '2010-07-06 16:53:46' WHERE `id` = 19[0m
+  [4;35;1mSQL (31.0ms)[0m   [0mCOMMIT[0m
+  [4;36;1mComment Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `comments`[0m
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mUploadFile Load (0.0ms)[0m   [0mSELECT * FROM `upload_files` WHERE (user_id=1 AND id NOT IN(19)) ORDER BY created_at DESC LIMIT 3[0m
+  [4;36;1mComment Load (0.0ms)[0m   [0;1mSELECT * FROM `comments` WHERE (`comments`.upload_file_id = 19) ORDER BY created_at DESC, created_at DESC LIMIT 0, 5[0m
+Rendering template within layouts/application
+Rendering medias/show
+  [4;35;1mUser Load (16.0ms)[0m   [0mSELECT * FROM `users` WHERE (remember_token = 'afb3b8d37b0fe8d6766a' AND remember_token_expires_at > '2010-07-06 22:24:02') LIMIT 1[0m
+Rendered common/_header (16.0ms)
+Rendered comments/_form (0.0ms)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=19) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=4) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=6) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=8) [0m
+Rendered medias/_show_media (47.0ms)
+Rendered common/_footer (0.0ms)
+Completed in 20057ms (View: 47, DB: 78) | 200 OK [http://localhost/medias/show/Qe4grU7bpC]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MediasController#show (for 127.0.0.1 at 2010-07-06 22:24:02) [GET]
+  Parameters: {"id"=>"Qe4grU7bpC"}
+  [4;35;1mUploadFile Load (0.0ms)[0m   [0mSELECT id FROM `upload_files` WHERE (encrypt_id='Qe4grU7bpC') LIMIT 1[0m
+  [4;36;1mUploadFile Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `upload_files`[0m
+  [4;35;1mUploadFile Load (0.0ms)[0m   [0mSELECT user_id FROM `upload_files` WHERE (id=19) LIMIT 1[0m
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT name FROM `users` WHERE (id=1) LIMIT 1[0m
+  [4;36;1mUploadFile Load (0.0ms)[0m   [0;1mSELECT * FROM `upload_files` WHERE (`upload_files`.`id` = 19) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mUploadFile Update (16.0ms)[0m   [0;1mUPDATE `upload_files` SET `view_count` = 38, `updated_at` = '2010-07-06 16:54:07' WHERE `id` = 19[0m
+  [4;35;1mSQL (31.0ms)[0m   [0mCOMMIT[0m
+  [4;36;1mComment Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `comments`[0m
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mUploadFile Load (16.0ms)[0m   [0mSELECT * FROM `upload_files` WHERE (user_id=1 AND id NOT IN(19)) ORDER BY created_at DESC LIMIT 3[0m
+  [4;36;1mComment Load (0.0ms)[0m   [0;1mSELECT * FROM `comments` WHERE (`comments`.upload_file_id = 19) ORDER BY created_at DESC, created_at DESC LIMIT 0, 5[0m
+Rendering template within layouts/application
+Rendering medias/show
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (remember_token = 'afb3b8d37b0fe8d6766a' AND remember_token_expires_at > '2010-07-06 22:24:22') LIMIT 1[0m
+Rendered common/_header (15.0ms)
+Rendered comments/_form (0.0ms)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=19) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=4) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=6) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=8) [0m
+Rendered medias/_show_media (16.0ms)
+Rendered common/_footer (0.0ms)
+Completed in 19916ms (View: 47, DB: 63) | 200 OK [http://localhost/medias/show/Qe4grU7bpC]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MediasController#show (for 127.0.0.1 at 2010-07-06 22:24:22) [GET]
+  Parameters: {"id"=>"Qe4grU7bpC"}
+  [4;35;1mUploadFile Load (0.0ms)[0m   [0mSELECT id FROM `upload_files` WHERE (encrypt_id='Qe4grU7bpC') LIMIT 1[0m
+  [4;36;1mUploadFile Columns (16.0ms)[0m   [0;1mSHOW FIELDS FROM `upload_files`[0m
+  [4;35;1mUploadFile Load (0.0ms)[0m   [0mSELECT user_id FROM `upload_files` WHERE (id=19) LIMIT 1[0m
+  [4;36;1mUser Columns (16.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT name FROM `users` WHERE (id=1) LIMIT 1[0m
+  [4;36;1mUploadFile Load (0.0ms)[0m   [0;1mSELECT * FROM `upload_files` WHERE (`upload_files`.`id` = 19) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mUploadFile Update (0.0ms)[0m   [0;1mUPDATE `upload_files` SET `view_count` = 39, `updated_at` = '2010-07-06 16:54:27' WHERE `id` = 19[0m
+  [4;35;1mSQL (47.0ms)[0m   [0mCOMMIT[0m
+  [4;36;1mComment Columns (15.0ms)[0m   [0;1mSHOW FIELDS FROM `comments`[0m
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mUploadFile Load (0.0ms)[0m   [0mSELECT * FROM `upload_files` WHERE (user_id=1 AND id NOT IN(19)) ORDER BY created_at DESC LIMIT 3[0m
+  [4;36;1mComment Load (0.0ms)[0m   [0;1mSELECT * FROM `comments` WHERE (`comments`.upload_file_id = 19) ORDER BY created_at DESC, created_at DESC LIMIT 0, 5[0m
+Rendering template within layouts/application
+Rendering medias/show
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (remember_token = 'afb3b8d37b0fe8d6766a' AND remember_token_expires_at > '2010-07-06 22:24:39') LIMIT 1[0m
+Rendered common/_header (0.0ms)
+Rendered comments/_form (16.0ms)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=19) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=4) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=6) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=8) [0m
+Rendered medias/_show_media (31.0ms)
+Rendered common/_footer (0.0ms)
+Completed in 16773ms (View: 46, DB: 94) | 200 OK [http://localhost/medias/show/Qe4grU7bpC]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MediasController#show (for 127.0.0.1 at 2010-07-06 22:24:39) [GET]
+  Parameters: {"id"=>"Qe4grU7bpC"}
+  [4;35;1mUploadFile Load (0.0ms)[0m   [0mSELECT id FROM `upload_files` WHERE (encrypt_id='Qe4grU7bpC') LIMIT 1[0m
+  [4;36;1mUploadFile Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `upload_files`[0m
+  [4;35;1mUploadFile Load (0.0ms)[0m   [0mSELECT user_id FROM `upload_files` WHERE (id=19) LIMIT 1[0m
+  [4;36;1mUser Columns (16.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT name FROM `users` WHERE (id=1) LIMIT 1[0m
+  [4;36;1mUploadFile Load (16.0ms)[0m   [0;1mSELECT * FROM `upload_files` WHERE (`upload_files`.`id` = 19) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mUploadFile Update (0.0ms)[0m   [0;1mUPDATE `upload_files` SET `view_count` = 40, `updated_at` = '2010-07-06 16:54:46' WHERE `id` = 19[0m
+  [4;35;1mSQL (31.0ms)[0m   [0mCOMMIT[0m
+  [4;36;1mComment Columns (16.0ms)[0m   [0;1mSHOW FIELDS FROM `comments`[0m
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mUploadFile Load (0.0ms)[0m   [0mSELECT * FROM `upload_files` WHERE (user_id=1 AND id NOT IN(19)) ORDER BY created_at DESC LIMIT 3[0m
+  [4;36;1mComment Load (0.0ms)[0m   [0;1mSELECT * FROM `comments` WHERE (`comments`.upload_file_id = 19) ORDER BY created_at DESC, created_at DESC LIMIT 0, 5[0m
+Rendering template within layouts/application
+Rendering medias/show
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (remember_token = 'afb3b8d37b0fe8d6766a' AND remember_token_expires_at > '2010-07-06 22:24:53') LIMIT 1[0m
+Rendered common/_header (0.0ms)
+Rendered comments/_form (0.0ms)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=19) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=4) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=6) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=8) [0m
+Rendered medias/_show_media (31.0ms)
+Rendered common/_footer (0.0ms)
+Completed in 14273ms (View: 31, DB: 79) | 200 OK [http://localhost/medias/show/Qe4grU7bpC]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MediasController#show (for 127.0.0.1 at 2010-07-06 22:24:54) [GET]
+  Parameters: {"id"=>"Qe4grU7bpC"}
+  [4;35;1mUploadFile Load (0.0ms)[0m   [0mSELECT id FROM `upload_files` WHERE (encrypt_id='Qe4grU7bpC') LIMIT 1[0m
+  [4;36;1mUploadFile Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `upload_files`[0m
+  [4;35;1mUploadFile Load (15.0ms)[0m   [0mSELECT user_id FROM `upload_files` WHERE (id=19) LIMIT 1[0m
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT name FROM `users` WHERE (id=1) LIMIT 1[0m
+  [4;36;1mUploadFile Load (0.0ms)[0m   [0;1mSELECT * FROM `upload_files` WHERE (`upload_files`.`id` = 19) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mUploadFile Update (0.0ms)[0m   [0;1mUPDATE `upload_files` SET `view_count` = 41, `updated_at` = '2010-07-06 16:55:01' WHERE `id` = 19[0m
+  [4;35;1mSQL (16.0ms)[0m   [0mCOMMIT[0m
+  [4;36;1mComment Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `comments`[0m
+WARNING: Can't mass-assign these protected attributes: id
+  [4;35;1mUploadFile Load (16.0ms)[0m   [0mSELECT * FROM `upload_files` WHERE (user_id=1 AND id NOT IN(19)) ORDER BY created_at DESC LIMIT 3[0m
+  [4;36;1mComment Load (0.0ms)[0m   [0;1mSELECT * FROM `comments` WHERE (`comments`.upload_file_id = 19) ORDER BY created_at DESC, created_at DESC LIMIT 0, 5[0m
+Rendering template within layouts/application
+Rendering medias/show
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (remember_token = 'afb3b8d37b0fe8d6766a' AND remember_token_expires_at > '2010-07-06 22:25:10') LIMIT 1[0m
+Rendered common/_header (0.0ms)
+Rendered comments/_form (0.0ms)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=19) [0m
+  [4;35;1mSQL (16.0ms)[0m   [0mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=4) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=6) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `comments` WHERE (upload_file_id=8) [0m
+Rendered medias/_show_media (31.0ms)
+Rendered common/_footer (0.0ms)
+Completed in 16727ms (View: 15, DB: 63) | 200 OK [http://localhost/medias/show/Qe4grU7bpC]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-07-06 22:25:11) [GET]
+  Parameters: {"1278064741"=>nil}
+
+ActionController::RoutingError (No route matches "/images/" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
