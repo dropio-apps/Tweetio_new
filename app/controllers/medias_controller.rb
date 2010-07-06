@@ -66,7 +66,14 @@ class MediasController < ApplicationController
     @thumbnail = Array.new
     @medias.each do |media|
       asset_name = media.name
+      puts "::::::::::::::::::::::::::::::::::::::::::::::::::"
+      puts asset_name
+      puts media.drop_name
+      puts "::::::::::::::::::::::::::::::::::::::::::::::::::"
       asset_obj = asset_find(asset_name,media.drop_name)
+      puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+      puts asset_obj.thumbnail
+      puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
       if !asset_obj.thumbnail.nil?
         @thumbnail << asset_obj.thumbnail
       else
@@ -98,12 +105,14 @@ class MediasController < ApplicationController
       else
         begin		  
           user_id = get_user_id_media_id(media_id)         
-		      @user_image,@user_desc = get_twitter_avatar_bio(user_id)
+		  @user_image,@user_desc = get_twitter_avatar_bio(user_id)          
           @user_name = get_user_name_by_id(user_id)
           # find media with id in DB
           @media_details = UploadFile.find(media_id)
           # Find asset(media) in drop.io.Pass asset name as parameter
-          @media_asset = asset_find("clicks-jpg","jbeginsamuel3225")
+          #@media_asset = asset_find(@media_details.name,@media_details.drop_name)
+          @media_asset = Array.new
+          @media_asset.large_thumbnail = "sdfsdf"
           # Increase the view count
           if flash[:comment_update] != "false"
             @media_details.increment!(:view_count)
