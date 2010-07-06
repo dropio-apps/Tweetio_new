@@ -77,7 +77,7 @@ class MediasController < ApplicationController
         end
       end
    end 
-	render :text=>asset_obj   
+	render :text=>asset_obj.inspect  
   end
 
   # Change Asset Name
