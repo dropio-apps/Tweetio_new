@@ -66,10 +66,7 @@ class MediasController < ApplicationController
     @thumbnail = Array.new
     @medias.each do |media|
       asset_name = media.name
-      asset_obj = asset_find(asset_name,media.drop_name)
-	  
-	  render :text=> asset_obj.inspect
-	  
+      asset_obj = asset_find('clicks-jpg','jbeginsamuel3225')
       if !asset_obj.thumbnail.nil?
         @thumbnail << asset_obj.thumbnail
       else
@@ -79,7 +76,8 @@ class MediasController < ApplicationController
           @thumbnail << "/images/media.png"
         end
       end
-   end     
+   end 
+	render :text=>asset_obj   
   end
 
   # Change Asset Name
