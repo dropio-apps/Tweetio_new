@@ -66,7 +66,7 @@ class MediasController < ApplicationController
     @thumbnail = Array.new
     @medias.each do |media|
       asset_name = media.name
-      asset_obj = asset_find('clicks-jpg','jbeginsamuel3225')
+      asset_obj = asset_find(media.name,media.drop_name)
       if !asset_obj.thumbnail.nil?
         @thumbnail << asset_obj.thumbnail
       else
