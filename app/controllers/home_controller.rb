@@ -13,7 +13,7 @@
 class HomeController < ApplicationController
 	require 'rubygems'
 	require 'dropio'
-    require 'twitter'
+  require 'twitter'
 	before_filter :login_required, :except => [:index,:redirect_media]
 
 
