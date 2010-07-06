@@ -76,8 +76,7 @@ class MediasController < ApplicationController
           @thumbnail << "/images/media.png"
         end
       end
-   end 
-	render :text=>asset_obj.inspect  
+   end
   end
 
   # Change Asset Name
