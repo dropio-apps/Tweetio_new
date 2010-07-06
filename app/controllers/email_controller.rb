@@ -17,6 +17,9 @@ protect_from_forgery :only => [:update, :delete, :create]
 
   #file1 = File.open("textmail.eml")
   #email = file1.read
+  puts params[:email]
+  render:text=> "hello"
+  
 	mail = TMail::Mail.parse(params[:email])
   description = mail.subject  
 	mailstr = mail.to
