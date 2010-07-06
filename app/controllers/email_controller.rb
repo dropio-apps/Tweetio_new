@@ -10,12 +10,11 @@ protect_from_forgery :only => [:update, :delete, :create]
   require 'tmail'
   require 'base64'
   require "parseconfig"
-  #require 'twitter'
+  require 'twitter'
   
   # Include Helper class
   def message
-    puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!initiatyed"
-	mail = TMail::Mail.parse(params[:email])
+	mail = TMail::Mail.parse(params[:email])	
   description = mail.subject  
 	mailstr = mail.to
 	mailstr = mailstr.to_s
