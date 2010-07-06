@@ -67,9 +67,9 @@ class MediasController < ApplicationController
     @medias.each do |media|
       asset_name = media.name
       asset_obj = asset_find(asset_name,media.drop_name)
-	  puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-	  puts asset_obj.thumbnail
-	  puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+	  
+	  render :text=> asset_obj.inspect
+	  
       if !asset_obj.thumbnail.nil?
         @thumbnail << asset_obj.thumbnail
       else
