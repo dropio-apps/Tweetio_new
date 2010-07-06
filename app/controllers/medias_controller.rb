@@ -103,8 +103,7 @@ class MediasController < ApplicationController
           # find media with id in DB
           @media_details = UploadFile.find(media_id)
           # Find asset(media) in drop.io.Pass asset name as parameter
-          @media_asset = asset_find(@media_details.name,@media_details.drop_name)
-          render :text=>@media_asset.inspect
+          @media_asset = asset_find(@media_details.name,@media_details.drop_name)          
           # Increase the view count
           if flash[:comment_update] != "false"
             @media_details.increment!(:view_count)
