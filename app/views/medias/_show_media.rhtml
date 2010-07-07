@@ -10,7 +10,7 @@
           </h1>
        <% end %>
        <div style="clear:both;height:10px;"></div>
-       <div style="border:1px solid gray;text-align:center;">
+       <div style="border:1px solid gray;text-align:center;padding-top:10px;padding-bottom:10px;">
            <% if @media_details.content_id == 1%>
               <% embed_text ="<img src=#{HOST}/medias/shared/#{@media_details.id}/#{@media_details.content_id}>"%>
               <%if !@media_asset.large_thumbnail.nil? %>
