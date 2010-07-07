@@ -14,7 +14,7 @@ protect_from_forgery :only => [:update, :delete, :create]
   
   # Include Helper class
   def message
-    emails = "/tmp/" +  params[:id].to_s + ".eml"
+    emails = "/tmp/" +  params[:email].to_s + ".eml"
     file = File.open(emails)
     contents = file.read
     file.close
