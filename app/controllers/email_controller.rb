@@ -18,7 +18,7 @@ protect_from_forgery :only => [:update, :delete, :create]
   #file1 = File.open("textmail.eml")
   #email = file1.read
 
-emails = "/tmp/".to_s+ params[:email]
+emails = "/tmp/" +  params[:email].to_s
 file = File.open(emails)
 contents = file.read
 file.close
