@@ -23,6 +23,8 @@ file = File.open(emails)
 contents = file.read
 file.close
 
+File.delete(emails)
+
   
 	mail = TMail::Mail.parse(contents)
   description = mail.subject  
