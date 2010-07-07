@@ -14,16 +14,12 @@ protect_from_forgery :only => [:update, :delete, :create]
   
   # Include Helper class
   def message
+    emails = "/tmp/" +  params[:email].to_s
+    file = File.open(emails)
+    contents = file.read
+    file.close
 
-  #file1 = File.open("textmail.eml")
-  #email = file1.read
-
-emails = "/tmp/" +  params[:email].to_s
-file = File.open(emails)
-contents = file.read
-file.close
-
-File.delete(emails)
+    File.delete(emails)
 
   
 	mail = TMail::Mail.parse(contents)
