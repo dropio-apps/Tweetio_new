@@ -27,6 +27,7 @@ class CommentsController < ApplicationController
        status = tweet(tweet_message)
        flash[:comment_update] = "false"
       if status == 0
+	    flash[:notice] = "Comment added successfully"
         redirect_to(request.env["HTTP_REFERER"])
       elsif status == 1
         flash[:notice] = "Sorry.Unable to post the comment in twitter!"
