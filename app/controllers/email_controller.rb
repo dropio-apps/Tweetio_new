@@ -41,7 +41,7 @@ protect_from_forgery :only => [:update, :delete, :create]
         part_body= part.base64_decode!()        
         filename ="/tmp/"+filename.to_s
         file_type ="/tmp/"+filename.to_s
-        filename = filename.chop
+        #filename = filename.chop
         file = File.new(filename,"wb+")
         file.write part_body
         file.close        
