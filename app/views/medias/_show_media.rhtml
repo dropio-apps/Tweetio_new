@@ -49,9 +49,7 @@
      <% if !@comment_list.nil? and !@comment_list.empty? %>
        <% @comment_list.each do |comment| %>
           <% user_name = get_user_name_by_id(comment.users_id)
-             #user_image,desc = @controller.get_twitter_avatar_bio(comment.users_id)
-             user_image = ""
-             desc = ""
+             user_image,desc = @controller.get_twitter_avatar_bio(comment.users_id)             
           %>
         <div class="add_media_box_small">
         <h1 class="tweet_img_holder"><%= image_tag(user_image)%></h1>
