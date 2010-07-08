@@ -20,6 +20,7 @@ class HomeController < ApplicationController
   def index      
     @thumbnail = Array.new
     if logged_in?
+	  redirect_to media_file_upload_path
       user_id = current_user.id
       @user_image,@user_desc = get_twitter_avatar_bio(user_id)
     end
