@@ -15,13 +15,13 @@ class CommentsController < ApplicationController
     # Twitter will accept only 140 character with URL
     if comments.length > 50
       comments_truncation = comments[0..47]
-      new_comments = comments_truncation + "..."
+      comments = comments_truncation + "..."
     end    
     if @comment.save
        # Create URL to share with twitter
        upload_file_id = params[:comment][:upload_file_id]
        # Create message for share in twitter
-       tweet_message = create_twitter_message(upload_file_id,new_comments)
+       tweet_message = create_twitter_message(upload_file_id,comments)
        
        # Call function for share the message in twitter site
        status = tweet(tweet_message)
