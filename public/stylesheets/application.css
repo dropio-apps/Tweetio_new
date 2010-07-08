@@ -268,6 +268,7 @@ vertical-align:middle;
 display:table-cell;
 float:left;
 padding-top:5px;
+overflow:hidden;
 }
 .add_media_box_small
 {
