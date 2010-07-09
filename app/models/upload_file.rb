@@ -2,6 +2,7 @@ class UploadFile < ActiveRecord::Base
   belongs_to :user
   has_many :comments,:order=>'created_at DESC',:dependent=>:destroy
   belongs_to :content  
+  attr_accessible :view_count
 
   #To get Sql query based on content type.
   named_scope :type_of_content, 
