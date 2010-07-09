@@ -193,6 +193,7 @@ module ApplicationHelper
           :embed_code=>upload_array_details.embed_code,
           :upload_player_type=>upload_type,
           :encrypt_id=>newpass(user_id),
+		  :view_count=>0
           :name=> media_name
          }
       return hash_array
