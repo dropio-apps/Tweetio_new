@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
        
        # Call function for share the message in twitter site
        status = tweet(tweet_message)
-       flash[:comment_update] = "false"
+       flash[:comment_update] = false
       if status == 0
 	    flash[:notice] = "Comment added successfully"
         redirect_to(request.env["HTTP_REFERER"])
