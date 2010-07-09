@@ -17,8 +17,10 @@
     </p>
     <h1 class="tweet_login_holder">
        <ul class="tweet_person_signedin">
-          <li class="login_name"><%= link_to current_user.name,medias_user_path(current_user.login)%><span><%=link_to 'Logout','/logout' %></span></li>
-          <li class="login_image"><%=image_tag @user_image%></li>
+          <li class="login_name"><%= link_to current_user.name, media_file_upload_path(current_user.login)%><span><%=link_to 'Logout','/logout' %></span></li>
+          <% if !@user_image.nil? %>
+			<li class="login_image"><%=image_tag @user_image%></li>
+		 <% end %>
        </ul>
     </h1>
    </div>
