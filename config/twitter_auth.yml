@@ -19,7 +19,7 @@ test:
   oauth_callback: "http://localhost:3000/oauth_callback"
 production:
   strategy: oauth
-  oauth_consumer_key: 0KrcQWn63Tk6Io3owCGg
+  oauth_consumer_key: EqQyo6GYNgaAhrmBldomSQ
   oauth_consumer_secret: lE6Figg208EpewWfuJq2AVHfNKEWLHu0wdo0HA3g
   base_url: "https://twitter.com"
   authorize_path: "/oauth/authenticate"
