@@ -99,11 +99,7 @@ class MediasController < ApplicationController
       else
         begin				
           user_id = get_user_id_media_id(media_id)
-          if logged_in?
-            user_id = current_user.id
-            @user_image,@user_desc = get_twitter_avatar_bio(user_id)
-          end
-		      #@user_image,@user_desc = get_twitter_avatar_bio(user_id)
+          @user_image,@user_desc = get_twitter_avatar_bio(user_id)
           @user_name = get_user_name_by_id(user_id)
           # find media with id in DB
           @media_details = UploadFile.find(media_id)
