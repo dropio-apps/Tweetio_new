@@ -101,6 +101,7 @@ class MediasController < ApplicationController
           user_id = get_user_id_media_id(media_id)
           @user_image,@user_desc = get_twitter_avatar_bio(user_id)
           @user_name = get_user_name_by_id(user_id)
+		  @user_login = get_login_by_user_id(user_id)
           # find media with id in DB
           @media_details = UploadFile.find(media_id)
           # Find asset(media) in drop.io.Pass asset name as parameter

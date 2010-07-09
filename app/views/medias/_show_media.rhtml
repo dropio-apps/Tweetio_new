@@ -77,7 +77,9 @@
          <%=image_tag(@user_image) %>
        <% end %>
      </li>
-     <li class="login_name"><%=@user_name%></li>
+     <li class="login_name">
+	 <%= link_to @user_name, medias_user_path(@user_login)%>
+	 <%=%></li>
    </ul>
     <% if !@media_details.nil? %>
    <ul class="posted_description">

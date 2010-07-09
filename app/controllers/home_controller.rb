@@ -13,23 +13,22 @@
 class HomeController < ApplicationController
 	require 'rubygems'
 	require 'dropio'
-  require 'twitter'
+    require 'twitter'
 	before_filter :login_required, :except => [:index,:redirect_media]
   
   #Home page
   def index      
     @thumbnail = Array.new
-    if logged_in?
-	  redirect_to media_file_upload_path
+    if logged_in?	  
       user_id = current_user.id
-      @user_image,@user_desc = get_twitter_avatar_bio(user_id)
+      @user_image,@user_desc = get_twitter_avatar_bio(user_id)	  
     end
   end
 
   # File upload form
   def file_upload    
     user_id = current_user.id
-    @user_image,@user_desc = get_twitter_avatar_bio(user_id)
+    @user_image,@user_desc = get_twitter_avatar_bio(user_id)	
     login = current_user.login
     user_id = get_user_id_by_login(login)
     @medias = UploadFile.paginate :per_page => 3,:page => params[:page], :order => 'created_at DESC', :conditions=>"user_id=#{user_id}"
@@ -55,8 +54,8 @@ class HomeController < ApplicationController
     validation_status = error_validation
     # if validation function return false, redirect to previous page with valid error message
     if !validation_status
-      redirect_to media_file_upload_path
-    else
+      redirect_to media_file_upload_path(current_user.login)
+    else 
       if !params['uploadfile']['file_field'].nil?
         upload_file_name =  params['uploadfile']['file_field'].original_filename
         # Get upload file type
@@ -98,7 +97,7 @@ class HomeController < ApplicationController
           upload_file_details = drop_file_upload(upload_file_path,upload_type,description)
         rescue          
           flash[:file_upload_error] = "Error while uploading file. Try later"
-          redirect_to media_file_upload_path
+          redirect_to media_file_upload_path(current_user.login)
         end
           # Create hash for save upload datas in database
           user_id = params['uploadfile']['user_id']
@@ -120,16 +119,16 @@ class HomeController < ApplicationController
             tweet(tweet_message)
           rescue
             flash[:file_upload_error] = "Error While tweeting message using twitter API.Try again later"
-            redirect_to media_file_upload_path
+            redirect_to media_file_upload_path(current_user.login)
           end
         # Redirect with successful message          
           flash[:file_upload_error] = "Media Uploaded Successfully"
-          redirect_to media_file_upload_path
+          redirect_to media_file_upload_path(current_user.login)
       rescue
         # Notice Error message
         flash[:file_upload_error] = "Error while uploading file. Try later"
         # Redirect to Home page
-        redirect_to media_file_upload_path
+        redirect_to media_file_upload_path(current_user.login)
       end
     end
   end

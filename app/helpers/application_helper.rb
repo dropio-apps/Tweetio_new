@@ -7,6 +7,13 @@ module ApplicationHelper
     @user = User.find(:first  ,:select=>"name",:conditions=>["id=#{user_id}"])
     return @user.name
   end
+  
+  # Get login by ID
+  def get_login_by_user_id(user_id)
+	@user = User.find(:first  ,:select=>"login",:conditions=>["id=#{user_id}"])
+    return @user.login
+  end
+  
   # Get user Id by media ID
   def get_user_id_media_id(media_id)
     @user = UploadFile.find(:first  ,:select=>"user_id",:conditions=>["id=#{media_id}"])
