@@ -5,7 +5,13 @@
           <% if current_user.id == @media_details.user_id %>
           <h1 class="main_image_title">
             <% form_tag "/medias/change_asset_name/#{params[:id]}", :method=>"post" do%>
-              <p class="picture_name"><%= text_field 'media','media_name',:value=>@media_details.media_name %></p>
+              <p class="picture_name">
+				<% if @media_details.media_name != "" %>
+					<%= text_field 'media','media_name',:value=>@media_details.media_name %>
+				<% else %>
+					<%= text_field 'media','media_name',:value=>@media_details.name %>
+				<% end %>
+			  </p>
               <p class="rename_pic"><%= submit_tag 'Rename' %></p>
             <% end %>
           </h1>
