@@ -6,7 +6,7 @@
           <h1 class="main_image_title">
             <% form_tag "/medias/change_asset_name/#{params[:id]}", :method=>"post" do%>
               <p class="picture_name">
-				<% if !@media_details.media_name.empty? %>
+				<% if !@media_details.media_name.nil? %>
 					<%= text_field 'media','media_name',:value=>@media_details.media_name %>
 				<% else %>
 					<%= text_field 'media','media_name',:value=>@media_details.name %>
