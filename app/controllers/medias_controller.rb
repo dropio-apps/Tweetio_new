@@ -108,8 +108,8 @@ class MediasController < ApplicationController
           # Find asset(media) in drop.io.Pass asset name as parameter
           @media_asset = asset_find(@media_details.name,@media_details.drop_name)          
           # Increase the view count
-          if flash[:comment_update] != false
-            @media_details.increment!(:view_count)
+          if flash[:comment_update] != false            
+            @media_details.update_attributes(:view_count => @media_details.view_count+1)
           end
 		  
           # Create comment object
