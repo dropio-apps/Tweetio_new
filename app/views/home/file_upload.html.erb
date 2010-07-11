@@ -26,7 +26,7 @@
         <% for media in @medias %>
           <div class="add_media_box_small">
             <h1 class="tweet_img_holder">
-              <%= link_to image_tag(@thumbnail[i] ,:border=>'0', :title=>media.description,:alt => media.description),:controller=>'medias',:action=>'show',:id=>media.encrypt_id -%>
+              <%= link_to image_tag(@thumbnail[i] ,:border=>'0', :title=>media.description,:alt => media.description),media_show_path(media.encrypt_id) -%>
             </h1>
             <p class="divider_image"><img src="/images/divider_img.gif" alt="" /></p>
             <h2 class="tweet_message_txt">
