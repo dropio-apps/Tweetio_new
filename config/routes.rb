@@ -39,6 +39,7 @@ ActionController::Routing::Routes.draw do |map|
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing or commenting them out if you're using named routes and resources.
    map.root :controller => "home",:action=>'index'
+   map.upload 'home/upload_dropio', :controller => "home",:action=>'upload_dropio'
    map.email 'email/message/:email', :controller => "email",:action=>'message'
    map.rss 'rss', :controller => "rss",:action=>'rssfeed'
    map.rss_user 'rss/:user', :controller => "rss",:action=>'rssfeed_user'
