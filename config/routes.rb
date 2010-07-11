@@ -39,6 +39,7 @@ ActionController::Routing::Routes.draw do |map|
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing or commenting them out if you're using named routes and resources.
    map.root :controller => "home",:action=>'index'
+   map.media_file_upload 'profile/:user_name',:controller => "home",:action=>'file_upload'
    map.upload 'home/upload_dropio', :controller => "home",:action=>'upload_dropio'
    map.email 'email/message/:email', :controller => "email",:action=>'message'
    map.rss 'rss', :controller => "rss",:action=>'rssfeed'
@@ -49,8 +50,7 @@ ActionController::Routing::Routes.draw do |map|
    map.medias_user 'media/:login' , :controller => "medias",:action=>'user_media'
    map.medias 'media' , :controller => "medias",:action=>'index'
    map.media_show 'media/show/:id',:controller => "medias",:action=>'show'
-   map.media_delete 'media/delete/:id',:controller => "medias",:action=>'destroy'
-   map.media_file_upload 'profile/:user_name',:controller => "home",:action=>'file_upload'
+   map.media_delete 'media/delete/:id',:controller => "medias",:action=>'destroy'   
    map.comment_delete 'comments/delete/:id',:controller => "comments",:action=>'destroy'
    map.api_asset 'api/drops/:drop_name/assets/:asset_name/embed_code', :controller=>"home", :action=>"redirect_media"
     map.resources :pictures
