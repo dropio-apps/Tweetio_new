@@ -117,7 +117,7 @@ class MediasController < ApplicationController
           media_list(@media_details.user_id,media_id)
           @comment_list = @media_details.comments.paginate(:per_page=>5,:page => params[:page], :order => 'created_at DESC')
           @detail_page = true
-          @share_url =  HOST+"/medias/show/"+params[:id]
+          @share_url =  HOST+"/media/show/"+params[:id]
         rescue 
 				
           # Error message display, If file is delete from DB and Drop.io
