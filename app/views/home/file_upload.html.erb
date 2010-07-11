@@ -1,6 +1,6 @@
 <%= render :partial=>'common/header' %>
   <div class="tweet_content_holder">
-   <% form_for(:uploadfile,@upload_profile,:url=>'/home/upload_dropio', :html => {:multipart => true }) do |f| %>
+   <% form_for(:uploadfile,@upload_profile,:url=> media_file_upload_path(current_user.login), :html => {:multipart => true }) do |f| %>
     <div class="tweet_left_column">
       <div class="add_media_box">
         <p class="box_heading">Add media now: <span class="upload_file"><%=flash[:file_upload_error]%></span></p>
