@@ -41,8 +41,10 @@ class HomeController < ApplicationController
         else
           if media.content_id == 4
             @thumbnail << "/images/document.png"
+          elsif media.content_id == 3
+		    @thumbnail << "/images/media.png"		    
           else
-            @thumbnail << "/images/media.png"
+            @thumbnail << "/images/process.gif"		  
           end
         end
      end
