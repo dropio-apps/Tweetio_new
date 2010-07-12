@@ -109,6 +109,7 @@ class MediasController < ApplicationController
           @media_asset = asset_find(@media_details.name,@media_details.drop_name)          
           # Increase the view count
           if flash[:comment_update] != false              
+		  
 			user_agent = (request.env["HTTP_USER_AGENT"].to_s).split("/")
 			logger.debug "I am wiliam here with user Agent" + user_agent[0]
 			if user_agent[0] != "PycURL"
