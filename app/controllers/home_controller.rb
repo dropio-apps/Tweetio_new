@@ -114,9 +114,9 @@ class HomeController < ApplicationController
               description = description+"..."            
             end            
             # Get message for twitter share
-            tweet_message = create_twitter_message(upload_file_id,description)            
+            #tweet_message = create_twitter_message(upload_file_id,description)            
             # Call the function for share the message in twitter site
-            tweet(tweet_message)            
+            #tweet(tweet_message)            
           rescue          
             flash[:file_upload_error] = "Error While tweeting message using twitter API.Try again later"
             redirect_to media_file_upload_path(current_user.login)            
