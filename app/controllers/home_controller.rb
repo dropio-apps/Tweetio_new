@@ -51,15 +51,27 @@ class HomeController < ApplicationController
   # File upload submit action
   def upload_dropio
     # Error validation function
+    logger.info " Entering into upload function.....................\n"
+    
     validation_status = error_validation
     # if validation function return false, redirect to previous page with valid error message
     if !validation_status
+      logger.info " validation status --------- inside\n"
       redirect_to media_file_upload_path(current_user.login)
     else 
+      logger.info " validation status --------- else side------- valiadtion passed\n"
       if !params['uploadfile']['file_field'].nil?
+        
+        logger.info " upload if loop \n"
+        
         upload_file_name =  params['uploadfile']['file_field'].original_filename
+        
+        logger.info " upload filename----------- \n".upload_file_name.to_s
         # Get upload file type
         get_media_type = params['uploadfile']['file_field'].content_type
+        
+        logger.info " upload media type ---------- \n".get_media_type.to_s
+        
         # Split the upload file type and get the file type in array[0]        
         media_type = get_media_type.split("/")
         # Get content file type id
@@ -74,7 +86,9 @@ class HomeController < ApplicationController
         upload_file_path = path
         # find file upload type(via directory)
         upload_type = 1
+        logger.info " upload type :  ---------- \n".upload_type.to_s
       else
+        logger.info " upload file ------- else loop :  ---------- \n"
         # Upload file using URL
         if !params['uploadfile']['file_url'].nil?
           if !params['uploadfile']['file_url'].empty?           
@@ -84,6 +98,9 @@ class HomeController < ApplicationController
             upload_type = 2           
             # Get upload media's type
             content_type = UploadFile.get_content_type_from_url(upload_file_path)
+            
+            logger.info " upload type :------- ".$upload_type.to_s
+            
           end
         end
       end
@@ -109,22 +126,31 @@ class HomeController < ApplicationController
             flash[:file_upload_error] = "Error while saving in databae"
           end
           begin
+          
+            logger.info " pointer in begin loop.........."
+          
             if description.length > 50
               description = upload_file_details.description[0..47]
               description = description+"..."            
             end
+            logger.info " tweet  starting................"
             # Get message for twitter share
             tweet_message = create_twitter_message(upload_file_id,description)
+            logger.info " tweet  messsage creating..............."
             # Call the function for share the message in twitter site
             tweet(tweet_message)
+            logger.info " tweet  posting messsage ............"
           rescue
+          logger.info " pointer in rescue message loop........."
             flash[:file_upload_error] = "Error While tweeting message using twitter API.Try again later"
             redirect_to media_file_upload_path(current_user.login)
+            logger.info " pointer in redirect_to loop........."
           end
         # Redirect with successful message          
           flash[:file_upload_error] = "Media Uploaded Successfully"
           redirect_to media_file_upload_path(current_user.login)
       rescue
+        logger.info " pointer in rescue upload loop........."
         # Notice Error message
         flash[:file_upload_error] = "Error while uploading file. Try later"
         # Redirect to Home page
@@ -178,22 +204,8 @@ class HomeController < ApplicationController
       return true
     end
   end
-  
-  def image_aspect(height,width)
-    height = height.to_i
-    width = width.to_i
-    static_width = 50
-    if width > height or width == height
-      fraction = width/height
-      height = static_width * width/height * fraction      
-    else
-      fraction = height/width
-      height = static_width * height/width * fraction 
-    end
-    return static_width.to_i,height.to_i
-  end
 
-   # Get User avatar image & description
+  # Get User avatar image & description
   def get_twitter_avatar_bio(user_id)
     user = User.find(:first,:conditions=>["id=?",user_id])
     consumer_key,consumer_secret = twitter_consumer_config_value
