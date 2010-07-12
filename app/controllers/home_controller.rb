@@ -91,20 +91,25 @@ class HomeController < ApplicationController
       # Exception handling for file upload
       begin
         # Get description
+		logger.debug "i am inside of begin--------- 94th line"
         description = params['uploadfile']['description']
         # Upload file to drop.io
         begin
+		logger.debug "i am inside of begin--------- 98th line"
           upload_file_details = drop_file_upload(upload_file_path,upload_type,description)
         rescue          
           flash[:file_upload_error] = "Error while uploading file. Try later"
           redirect_to media_file_upload_path(current_user.login)
         end
           # Create hash for save upload datas in database
+		 logger.debug "i am inside--------- 105th line"
           user_id = params['uploadfile']['user_id']
           hash_array = upload_array(user_id,upload_file_details,content_type,upload_type)
           begin
             # Save values in databse
+			logger.debug "i am inside--------- 110th line"
             upload_file_id = upload_save(hash_array)
+			logger.debug "i am inside after--------- 111th line"
           rescue
             flash[:file_upload_error] = "Error while saving in databae"
           end
