@@ -140,10 +140,8 @@ module ApplicationHelper
    def create_twitter_message(upload_file_id,description)
     encrypt_id = get_encrypt_id_by_file_id(upload_file_id)
     # Create URL to share with twitter
-#    twit_url = "http://tweet.io/media/show/" + encrypt_id.to_s
-    twit_url = "http://tweet.io/media/jbeginsamuel"
 	
-    #twit_url = "#{HOST}/media/show/#{encrypt_id}"
+    twit_url = "#{HOST}/media/show/#{encrypt_id}"
 	
     if description != ""
       twit_description = description
