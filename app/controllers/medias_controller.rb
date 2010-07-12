@@ -111,7 +111,7 @@ class MediasController < ApplicationController
           @media_asset = asset_find(@media_details.name,@media_details.drop_name)          
           # Increase the view count
           if flash[:comment_update] != false     
-			logger.debug = " Rails User Agent .............."
+			logger.debug  " Rails User Agent .............."
 			logger.debug "User Agent" + request.env["HTTP_USER_AGENT"].to_s
             @media_details.update_attributes(:view_count => @media_details.view_count+1)
 			logger.debug " ---------------Agent "
