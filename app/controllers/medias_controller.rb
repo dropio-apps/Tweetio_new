@@ -91,9 +91,7 @@ class MediasController < ApplicationController
   end
 
   # Media details method
-  def show		
-      logger.debug " Rails User Agent .............."
-			logger.debug "User Agent" + request.env["HTTP_USER_AGENT"].to_s
+  def show
       media_id = get_file_id_by_encrypt_id(params[:id])
       if media_id == 0        
         # Error message display, If file is delete from DB and Drop.io
@@ -111,10 +109,10 @@ class MediasController < ApplicationController
           @media_asset = asset_find(@media_details.name,@media_details.drop_name)          
           # Increase the view count
           if flash[:comment_update] != false     
-			logger.debug  " Rails User Agent .............."
-			logger.debug "User Agent" + request.env["HTTP_USER_AGENT"].to_s
-            @media_details.update_attributes(:view_count => @media_details.view_count+1)
-			logger.debug " ---------------Agent "
+			user_agent = (request.env["HTTP_USER_AGENT"].to_s).split("/")
+			if user_agent[0] != "PycURL"
+			  @media_details.update_attributes(:view_count => @media_details.view_count+1)
+			end
           end
 		  
           # Create comment object
