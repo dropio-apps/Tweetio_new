@@ -108,8 +108,9 @@ class MediasController < ApplicationController
           # Find asset(media) in drop.io.Pass asset name as parameter
           @media_asset = asset_find(@media_details.name,@media_details.drop_name)          
           # Increase the view count
-          if flash[:comment_update] != false     
+          if flash[:comment_update] != false              
 			user_agent = (request.env["HTTP_USER_AGENT"].to_s).split("/")
+			logger.debug "I am wiliam here with user Agent" + user_agent[0]
 			if user_agent[0] != "PycURL"
 			  @media_details.update_attributes(:view_count => @media_details.view_count+1)
 			end
