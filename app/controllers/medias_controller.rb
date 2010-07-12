@@ -92,7 +92,7 @@ class MediasController < ApplicationController
 
   # Media details method
   def show		
-      logger.debug = " Rails User Agent .............."
+      logger.debug " Rails User Agent .............."
 			logger.debug "User Agent" + request.env["HTTP_USER_AGENT"].to_s
       media_id = get_file_id_by_encrypt_id(params[:id])
       if media_id == 0        
