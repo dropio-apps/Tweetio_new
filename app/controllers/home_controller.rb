@@ -135,10 +135,10 @@ class HomeController < ApplicationController
             end
             logger.info " tweet  starting................"
             # Get message for twitter share
-           # tweet_message = create_twitter_message(upload_file_id,description)
+            tweet_message = create_twitter_message(upload_file_id,description)
             logger.info " tweet  messsage creating..............."
             # Call the function for share the message in twitter site
-           # tweet(tweet_message)
+            tweet(tweet_message)
             logger.info " tweet  posting messsage ............"
           rescue
           logger.info " pointer in rescue message loop........."
