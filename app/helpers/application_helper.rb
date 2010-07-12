@@ -141,7 +141,8 @@ module ApplicationHelper
     encrypt_id = get_encrypt_id_by_file_id(upload_file_id)
     # Create URL to share with twitter
 #    twit_url = "#{HOST}/media/show/#{encrypt_id}"
-    twit_url = "http://www.google.com"
+    twit_url = media_show_path(encrypt_id)
+	
     if description != ""
       twit_description = description
     else
