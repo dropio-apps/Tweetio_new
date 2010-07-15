@@ -140,7 +140,7 @@ module ApplicationHelper
    def create_twitter_message(upload_file_id,description)
     encrypt_id = get_encrypt_id_by_file_id(upload_file_id)
     user_id = get_user_id_media_id(upload_file_id)
-    owner_name = get_user_name_by_id(user_id)
+    owner_name = get_login_by_user_id(user_id)
 	
     # Create URL to share with twitter	
     twit_url = "#{HOST}/media/show/#{encrypt_id}"	
