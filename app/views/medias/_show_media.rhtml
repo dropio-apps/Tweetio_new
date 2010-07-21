@@ -11,8 +11,11 @@
 				<% else %>
 					<%= text_field 'media','media_name',:value=>@media_details.name %>
 				<% end %>
-			  </p>
+			  </p>              
               <p class="rename_pic"><%= submit_tag 'Rename' %></p>
+              <% if !flash[:rename_notice].nil? %>
+                <br style="clear:both;"><p style="color:red;"><%=flash[:rename_notice]%></p>
+              <% end %>
             <% end %>
           </h1>
           <% end %>
