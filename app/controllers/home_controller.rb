@@ -13,22 +13,24 @@
 class HomeController < ApplicationController
 	require 'rubygems'
 	require 'dropio'
-    require 'twitter'
+   # require 'twitter'
 	before_filter :login_required, :except => [:index,:redirect_media]
   
   #Home page
-  def index      
+  def index
     @thumbnail = Array.new
     if logged_in?	  
-      user_id = current_user.id
-      @user_image,@user_desc = get_twitter_avatar_bio(user_id)	  
+      #user_id = current_user.id
+      #@user_image,@user_desc = get_twitter_avatar_bio(user_id)
+      redirect_to media_file_upload_path(current_user.login)
     end
   end
 
   # File upload form
   def file_upload    
     user_id = current_user.id
-    @user_image,@user_desc = get_twitter_avatar_bio(user_id)	
+    #@user_image,@user_desc = get_twitter_avatar_bio(user_id)
+
     login = current_user.login
     user_id = get_user_id_by_login(login)
     @medias = UploadFile.paginate :per_page => 3,:page => params[:page], :order => 'created_at DESC', :conditions=>"user_id=#{user_id}"
