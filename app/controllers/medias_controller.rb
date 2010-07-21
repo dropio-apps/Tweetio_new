@@ -83,11 +83,17 @@ class MediasController < ApplicationController
   # Change Asset Name
   def change_asset_name
     encrypt_id = params[:encrypt_id]
-    new_media_name = params[:media][:media_name]
-    media_id = get_file_id_by_encrypt_id(encrypt_id)
-    @file = UploadFile.find(media_id)
-    @file.update_attributes(:media_name=>new_media_name)
-    redirect_to media_show_path(encrypt_id)
+    if(params[:media][:media_name].nil? or params[:media][:media_name].empty? )
+      flash[:rename_notice] = "Please enter media name"
+      redirect_to media_show_path(encrypt_id)
+    else
+      new_media_name = params[:media][:media_name]
+      media_id = get_file_id_by_encrypt_id(encrypt_id)
+      @file = UploadFile.find(media_id)
+      @file.update_attributes(:media_name=>new_media_name)
+      redirect_to media_show_path(encrypt_id)
+    end
+
   end
 
   # Media details method
