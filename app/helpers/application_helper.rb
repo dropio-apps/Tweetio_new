@@ -151,7 +151,7 @@ module ApplicationHelper
     end
     # Add description with URL
     if !twit_description.nil?
-      tweet_message = "@"+owner_name+" "+twit_description+":"+twit_url
+      tweet_message = "@" + owner_name + " " + twit_description + twit_url
     else
       tweet_message = twit_url
     end
