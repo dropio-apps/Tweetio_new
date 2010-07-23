@@ -10,11 +10,11 @@
         </h1>
         <h1 class="box_row">
           <label class="label_name">Url</label>
-          <p class="buttons"><%= f.text_field :file_url  -%></p>
+          <p class="buttons"><%= f.text_field :file_url, :class => 'text_field' -%></p>
         </h1>
         <h1 class="box_row1">
          <label class="label_name">Note</label>
-         <p class="text_fld"><%= f.text_area :description, :rows => '1', :cols => '23' %></p>
+         <p class="text_fld"><%= f.text_area :description, :rows => '1', :cols => '23', :class => 'text_field_295' %></p>
          <p class="buttons1">
            <%= f.hidden_field :user_id, :value => current_user.id %>
            <%= image_submit_tag "/images/upload_btn.gif" %>
