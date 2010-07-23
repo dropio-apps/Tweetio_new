@@ -13,7 +13,7 @@
 class HomeController < ApplicationController
 	require 'rubygems'
 	require 'dropio'
-   # require 'twitter'
+  require 'twitter'
 	before_filter :login_required, :except => [:index,:redirect_media]
   
   #Home page
@@ -29,7 +29,7 @@ class HomeController < ApplicationController
   # File upload form
   def file_upload    
     user_id = current_user.id
-    #@user_image,@user_desc = get_twitter_avatar_bio(user_id)
+    @user_image,@user_desc = get_twitter_avatar_bio(user_id)
 
     login = current_user.login
     user_id = get_user_id_by_login(login)
