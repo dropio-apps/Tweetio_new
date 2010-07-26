@@ -544,14 +544,16 @@ padding:15px 50px 15px 0;
 }
 .txtbox
 {
-    background:transparent url(/images/gray_searchimg.gif) no-repeat scroll 0;
-    border:medium none;
-    height:26px;    
+    /*background:transparent url(/images/gray_searchimg.gif) no-repeat scroll 0;
+    border:medium none;*/
+    height:15px;
     padding-top:6px;
     padding-left:2px;
     width:218px;
 	color: #000000;
 	margin-left:5px;
+    border: 1px solid #CACACA;
+    border-top: 2px solid #CACACA;
 }
 .bottom_div {
     height:20px;
