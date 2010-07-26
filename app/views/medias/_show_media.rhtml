@@ -7,9 +7,9 @@
             <% form_tag "/medias/change_asset_name/#{params[:id]}", :method=>"post" do%>
               <p class="picture_name">
 				<% if !@media_details.media_name.nil? %>
-					<%= text_field 'media','media_name',:value=>@media_details.media_name %>
+					<%= text_field 'media','media_name',:value=>@media_details.media_name, :class=>'txtbox' %>
 				<% else %>
-					<%= text_field 'media','media_name',:value=>@media_details.name %>
+					<%= text_field 'media','media_name',:value=>@media_details.name, :class=>'txtbox' %>
 				<% end %>
 			  </p>              
               <p class="rename_pic"><%= submit_tag 'Rename' %></p>
