@@ -1,10 +1,26 @@
+<script>
+  function rename_hide() {
+    document.getElementById("rename_save_div").style.display = 'block';
+    document.getElementById("rename_div").style.display = 'none';
+  }
+
+  function openCommentDiv() {    
+    document.getElementById("TB_window").style.display = "block";
+    document.getElementById("TB_overlay").style.display = "block";
+  }
+
+   function hideCommentDiv() {
+    document.getElementById("TB_window").style.display = "none";
+    document.getElementById("TB_overlay").style.display = "none";
+  }
+</script>
 <div class="tweet_content_holder_detail">
     <div class="tweet_left_column">
       <% if @media_error.nil? %>
         <% if logged_in? %>
           <% if current_user.id == @media_details.user_id %>
-          <h1 class="main_image_title">
-            <% form_tag "/medias/change_asset_name/#{params[:id]}", :method=>"post" do%>
+            <h1 id="rename_save_div" style="display:none;" class="main_image_title">
+             <% form_tag "/medias/change_asset_name/#{params[:id]}", :method=>"post" do%>
               <p class="picture_name">
 				<% if !@media_details.media_name.nil? %>
 					<%= text_field 'media','media_name',:value=>@media_details.media_name, :class=>'txtbox' %>
@@ -12,13 +28,25 @@
 					<%= text_field 'media','media_name',:value=>@media_details.name, :class=>'txtbox' %>
 				<% end %>
 			  </p>              
-              <p class="rename_pic"><%= submit_tag 'Rename' %></p>
+              <p class="rename_pic"><%= submit_tag 'Save' %></p>
               <% if !flash[:rename_notice].nil? %>
                 <br style="clear:both;"><p style="color:red;"><%=flash[:rename_notice]%></p>
               <% end %>
             <% end %>
+           </h1>
+           <h1 id="rename_div">
+            <p style="width:475px;float:left;">
+              <% if !@media_details.media_name.nil? %>
+                <%=@media_details.media_name[0..100]%>
+              <% else %>
+                <%=@media_details.name[0..100]%>
+              <% end %>
+            </p>
+            <p style="width:70px;float:left;">
+              <a href="#" onclick="javascript:rename_hide();">Rename</a>
+            </p>
           </h1>
-          <% end %>
+        <% end %>
        <% end %>
        <div style="clear:both;height:10px;"></div>
        <div style="border:1px solid gray;text-align:center;padding-top:10px;padding-bottom:10px;">
@@ -40,16 +68,25 @@
         <h2 class="mainimg_container">
          <p class="picturemsg_dwn"><%=@media_details.description%></p>
         </h2>
-       <%if logged_in?%>
+       <%#if logged_in?%>
          <h2 class="mainimg_container">
            <%= error_messages_for :comment %>
          </h2>
          <%= render :partial =>'comments/form',:locals => { :upload_file => @media_details} %>
-       <%else%>
-        <h2 class="mainimg_container">
-          <p>Please <%=link_to 'login','/login'%> to leave comments</p>
-        </h2>
-       <%end%>
+       <%#else%>
+        <!--<h2 class="mainimg_container">
+          <p>Please <%#=link_to 'login','/login'%> to leave comments</p>
+        </h2> !-->
+
+    <div id="TB_overlay" onclick="javascript:hideCommentDiv();" class="TB_overlayBG" style="display: none;"></div>
+	<div id="TB_window" style="height:150px;margin-left: -350px; width: 650px; display: none;">
+	<div id="TB_title"></div>
+      <div class="div_comment_head">You must be signed in to twitter to comment !</div>
+	  <div class="div_comment_head_1">Your comment will be replied</div>
+	  <div class="div_comment_head_2"><%=link_to image_tag("/images/tweet_signin_btn.gif", :alt=>"Signin"), '/login' %></div>
+    </div>
+
+       <%#end%>
      <% else %>
         <h2 class="mainimg_container">
           <p class="picturemsg_dwn"><%=@media_error%></p>

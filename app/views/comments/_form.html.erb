@@ -8,7 +8,11 @@
        <p class="post_btn">
          <%= f.hidden_field :upload_file_id, :value => upload_file.id %>
          <%= f.hidden_field :users_id, :value => current_user.id %>
-         <%= image_submit_tag "/images/post_btn.gif" %>
+         <%if logged_in?%>
+            <%= image_submit_tag "/images/post_btn.gif" %>
+        <% else %>
+         <a href="#" onclick="javascript:openCommentDiv();"><img src="/images/post_btn.gif" border="0"></a>
+        <% end %>
       </p>
   </div>
 <% end %>
